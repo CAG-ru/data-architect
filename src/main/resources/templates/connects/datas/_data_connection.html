@@ -1,0 +1,62 @@
+<div class='mb_panel with-shadow  white-background' th:fragment="item">
+  <h5>Настройки соединения с хранилищем данных</h5>
+  <a href='/data-store/edit-data-connection' class="btn btn-outline-primary btn-sm" role="button">
+    <i class="fas fa-edit fa-lg"></i>
+    <th:block th:if="${data_con!=null}">Изменить</th:block>
+    <th:block th:if="${data_con==null}">Создать</th:block>
+    настройку соединения с хранилищем данных
+  </a>
+  <br>
+  <br>
+  <table th:if="${data_con!=null}" class="table table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th class='center'>Характеристика соединения</th>
+        <th class='center'>Значение</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Название</td>
+        <td th:text="${data_con.getName()}"></td>
+      </tr>
+      <tr>
+        <td>Описание</td>
+        <td th:text="${data_con.getDescription()}">
+
+        </td>
+      </tr>
+      <tr>
+        <td>Путь к хранилищу </td>
+        <td th:text="${data_con.getPath()}">
+
+          {% if not check_path_data_con %}
+          <div class="text-danger font-italic">
+            Каталог не существует!
+          </div>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Создал</td>
+        <td th:text="${data_con.createdBy}">
+
+        </td>
+      </tr>
+      <tr>
+        <td>Дата создания</td>
+        <td th:text="${#calendars.format(data_con.createdAt,'dd MMMM yyyy')}"></td>
+      </tr>
+      <tr>
+        <td>Изменил</td>
+        <td th:text="${data_con.updatedBy}">
+
+        </td>
+      </tr>
+      <tr>
+        <td>Дата изменения</td>
+        <td th:text="${#calendars.format(data_con.getUpdatedAt,'dd MMMM yyyy')}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

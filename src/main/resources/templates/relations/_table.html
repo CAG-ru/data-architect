@@ -1,0 +1,95 @@
+<div th:fragment="item">
+  <div><small>* В списке отображаются только обработанные <a href="/sources/">источники</a> (для которых выполнена загрузка данных).</small></div>
+  <div class="mb_panel with-shadow white-background">
+    <form action="/relations/edit/" method="GET">
+      <table class="table table-hover table-sm">
+        <thead class="thead-dark">
+          <tr>
+            <th class='left'>№</th>
+            <th class='left'><input
+                      th:if="${source_connections.size()>0}"
+                      class="sources-list-item-checkbox" type="checkbox" id="cid_all" name="cid_all">
+            </th>
+            <th class='left'>Название</th>
+            <th class='left'>Таблицы</th>
+            <th class='left'>Связи</th>
+            <th class='left'>Тип базы данных</th>
+            <th class='left'>Хост:Порт / База данных</th>
+            <!--<th class='left'>Признак обработки</th>-->
+          </tr>
+        </thead>
+        <tbody th:if="${source_connections.size()>0}">
+          <tr th:each="one_conn,iter : ${source_connections}">
+            <td class='left' th:text="${iter.index}"></td>
+            <td>
+              <input
+                      class="sources-list-item-checkbox" type="checkbox"
+                      name="cid[]"
+                th:value="${one_conn.id}">
+            </td>
+            <td class="left" th:text="${one_conn.getName()}">
+              <span>
+                <i class='fas fa-info-circle icon green' data-toggle="tooltip"
+                  th:title="${one_conn.description.notEmpty() ? one_conn.description :'Нет описания'}"></i>
+              </span>
+            </td>
+            <td class="left">
+              Таблиц: <th:block
+                    th:if="${one_conn.schemasWithTables!=null}"
+                    th:text="${one_conn.schemasWithTables.size()}"></th:block>
+              <th:block th:if="${one_conn.schemasWithTables==null}">0</th:block>
+              <br>
+              <div th:data-source-id="${one_conn.id}">
+                <select th:name="${'tables_list['+iter.index+']'}" th:data-source-id="${one_conn.id}" style="display:none;" multiple="multiple">
+                  <option value="-1">Все</option>
+                </select>
+                <button th:data-source-id="${one_conn.id}"
+                  class="btn btn-outline-info btn-sm relations-list-btn-show-tables" type="button">
+                <th:block th:if="${one_conn.typeSource == 'DB'}">
+                  <i  class="far fa-window-restore jstree-themeicon-custom"></i>
+                  Выбрать таблицу
+                </th:block>
+                  <th:block
+                  th:if="${one_conn.typeSource == 'FILES'}">
+                    Выбрать файл
+
+                  </th:block>
+                </button>
+              </div>
+            </td>
+            <td class="left">
+              <th:block th:if="${one_conn.relationInfo!=null}">
+              <nobr>Foreign key:
+              <th:block th:text="${one_conn.relationInfo.countForeignKeys}"></th:block>
+              </nobr>
+              <br>
+              <nobr>Авто-связи:
+                <th:block th:text="${one_conn.relationInfo.countAutoKeys}"></th:block>
+              </nobr>
+              <br>
+              <nobr>Ручные связи:
+                <th:block th:text="${one_conn.relationInfo.countManuallyKeys}"></th:block>
+              </nobr>
+              </th:block>
+            </td>
+            <td class='left' th:text="${one_conn.getDbapiHuman()}"></td>
+            <td class='left'
+                th:if="one_conn.host!=null"
+                th:text="${one_conn.host + ':' + one_conn.port + '/' + one_conn.database}"
+            ></td>
+            <!--<td class='left'> {% if one_conn.check %} <i class='fas fa-toggle-on icon size24 text-success'
+                data-toggle="tooltip" title="Обработано"></i> {% else %} <i
+                class='fas fa-toggle-off icon size24 text-danger' data-toggle="tooltip" title="Не обработано"></i>
+              {% endif %}
+            </td>-->
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <button type="submit" id="btn_index_edit_relations" class="btn btn-outline-primary btn-cons btn-sm"
+        disabled="disabled"><i
+          class="fa fa-edit"></i> Редактировать связи</button>
+    </form>
+  </div>
+  <!-- <script th:src="@{/js/relations/relations-index.js}" defer="defer"></script> -->
+</div>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <title>Соединения с источниками</title>
+</head>
+
+<body>
+  <section>
+    <div class="page-name" id='sources-page'></div>
+    <link th:href="@{/plugins/footable/css/footable.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/plugins/jstree/themes/default/style.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/sources/sources.css}" rel="stylesheet" type="text/css" />
+
+    <script th:src="@{/plugins/jstree/js/jstree.min.js}" type="text/javascript"></script>
+    <script th:src="@{/plugins/footable/js/footable.js}" type="text/javascript"></script>
+    <script th:src="@{/plugins/showdown/js/showdown.min.js}" type="text/javascript"></script>
+    <script th:src="@{/plugins/ckeditor-markdown/ckeditor.js}" type="text/javascript"></script>
+    <script th:src="@{/js/sources/sources-api.js}" defer="defer"></script>
+    <script th:src="@{/js/sources/sources-page.js}" defer="defer"></script>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- START BREADCRUMB -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item active">Соединения с источниками</li>
+          </ol>
+          <!-- END BREADCRUMB -->
+          <h4>Соединения с источниками</h4>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class='mb_panel with-shadow white-background'>
+                <!-- <button type="button" id="button_create" class="btn btn-outline-success btn-sm">Создать</button> -->
+                <div>
+                  <div id='id_action_button_place'>
+                    <a href="/sources/edit-source-conn/?action=new" role='button'
+                      class='btn btn-outline-primary btn-sm' data-toggle="tooltip"
+                      title="Добавить соединение с источником">
+                      <!-- <i class="fas fa-broom"></i> -->
+                      <i class='fas fa-plus'></i>
+                      Добавить
+                    </a>
+                  </div>
+                  <form id="search">
+                    <div class="input-group mb-3">
+                      <input type="search" class="form-control" id="search_jstree" placeholder="Найти" />
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit" data-toggle="tooltip"
+                          title="Найти указанную строку в дереве">
+                          <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" data-toggle="tooltip" title="Очистить поиск"
+                          id="clear_search">
+                          <i class="fas fa-broom"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- <button type="submit">Найти</button> -->
+                  </form>
+                  <div class="tree-sources" id="tree_sources">
+                    <div id="sources_tree">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-9 ">
+              <div class='mb_panel with-shadow white-background'>
+                <div class="alert alert-danger bordered" th:if="${data_con == null}">
+                  <i class=" fas fa-exclamation-triangle"></i>
+                  <strong>
+                    Не настроено соединение с хранилищем данных!
+                  </strong>
+                  <a href='/data-store/edit-data-connection/'>
+                    Создать настройку соединения с хранилищем данных
+                  </a>
+                </div>
+                <br>
+
+                <!-- Nav tabs -->
+                <div id="id_info_place">
+                </div>
+
+                <div class="footer-system-utils text-secondary">
+                  Доступная память:
+                  Диск: <th:block th:text="${disk_free_space}"></th:block> Гбайт.
+                  ОЗУ: <th:block th:text="${memory_free_space}"></th:block> Гбайт.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <br><br>
+
+      </div>
+
+    </div>
+  </section>
+</body>
+
+</html>

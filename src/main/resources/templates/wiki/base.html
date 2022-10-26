@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load wiki_tags %}
+{% load sass_tags %}
+{% load sekizai_tags %}
+
+
+{% block title %}WiKi{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'wiki/js/core.js' %}"></script>
+    <script src="{% static 'wiki/js/respond.min.js' %}"></script>
+    <script src="{% static 'js/wiki-articles-for-print.js' %}" defer="defer"></script>
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'wiki/bootstrap/css/wiki-bootstrap.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="page-name" id='wiki-page'></div>
+    {% block wiki_body %}
+
+  <div class="container-fluid">
+        <!-- START BREADCRUMB 
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Главная</a></li>
+          <li class="breadcrumb-item active">Wiki</li>
+        </ol>
+         END BREADCRUMB -->
+
+      <!-- Reserved for breadcrumbs -->
+      {% block wiki_breadcrumbs %}{% endblock %}
+
+      <!-- Main page contents go here -->
+      {% block wiki_contents %}{% endblock %}
+
+      {% comment %} <footer id="wiki-footer">
+        <hr />
+        {% block wiki_footer_prepend %}
+        {% endblock %}
+        <div class="clearfix"></div>
+      </footer> {% endcomment %}
+      </div>
+
+    </div> <!-- /container -->
+    {% endblock %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

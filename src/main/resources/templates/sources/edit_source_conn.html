@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+  <title>Соединения с источниками</title>
+</head>
+<body>
+<section>
+<div class="page-name" id='sources-page'></div>
+<link th:href="@{/plugins/jstree/themes/default/style.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/styles/sources/sources.css}" rel="stylesheet" type="text/css" />
+
+<script th:src="@{/plugins/ckeditor-markdown/ckeditor.js}" type="text/javascript"></script>
+<script th:src="@{/plugins/jstree/js/jstree.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/sources/edit_source.js}" defer="defer"></script>
+
+<!-- Здесь передается id соединение, если оно подается на редактирование -->
+<div id="edit_connect_id"
+     th:if="${edit_connect_id!=null}"
+
+     th:data-edit_connect_id="${edit_connect_id}"></div>
+
+<!-- <div class="mb_panel with-shadow white-background"> -->
+<div>
+  <div class="row">
+    <div class="col-lg-12" id="edit_source_connection">
+      <!-- START BREADCRUMB -->
+      <!-- <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item"><a href="/connects/">Настройка соединений</a></li>
+            <li class="breadcrumb-item active">Редактирование параметров соединения c источником</li>
+          </ol> -->
+      <!-- END BREADCRUMB -->
+      <h3
+              th:if="${edit_connect_id == null}"
+              class='center'>Добавление соединения с источником</h3>
+      <h3
+              th:if="${edit_connect_id != null}"
+              class='center'>Редактирование параметров соединения c источником</h3>
+      <form class="was-validated" action="/connects/sources/" id='id_form_source_connection'>
+        <div class="edit-body">
+          <div class=" mb_panel with-shadow white-background" id="accordion">
+            <input type="hidden" name="id" id="id_id">
+            <div class="form-group">
+              <label for="name">
+                Название соединения
+              </label>
+              <input type="text" name="name" id="id_name" class="form-control form-control-sm"
+                placeholder="Введите название соединения" required>
+              <div class="invalid-feedback">
+                Введите название соединения
+              </div>
+            </div>
+            <div class="card-box">
+              <a href="#common_info" data-toggle="collapse" aria-expanded="false" aria-controls="common_info">
+                <i class="fas fa-chevron-down"></i>
+                Описание
+                <i class="fas fa-chevron-down"></i>
+              </a>
+            </div>
+            <div id="common_info" class="collapse show" data-parent="#accordion">
+
+              <div class="form-group">
+                <label for="short_description">
+                  Краткое описание
+                </label>
+                <input type="text" name="short_description" id="id_short_description"
+                  class="form-control form-control-sm" placeholder="Краткое описание соединения соединения">
+                <div class="invalid-feedback">
+                  Введите краткое описание соединения соединения
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="description">
+                  Описание соединения
+                </label>
+                <textarea name="description" id="id_description" class="form-control form-control-sm">
+                                </textarea>
+              </div>
+
+            </div>
+            <div class="card-box">
+              <a href="#common_info_additional" data-toggle="collapse" aria-expanded="false"
+                aria-controls="common_info_additional">
+                <i class="fas fa-chevron-down"></i>
+                Дополнительное описанние
+                <i class="fas fa-chevron-down"></i>
+              </a>
+            </div>
+            <div id="common_info_additional" class="collapse" data-parent="#accordion">
+
+              <div class="form-group">
+                <label for="original_Url">
+                  Ссылка на ресурс-источник
+                </label>
+                <input type="text" name="original_Url" id="id_original_Url" class="form-control form-control-sm">
+                <div class="invalid-feedback">Введите ссылку на ресурс-источник</div>
+              </div>
+
+              <div class="form-group" aria-describedby="type_of_data_source_help">
+                <label for="type_of_data_source">
+                  Вид источника данных
+                </label>
+                <select name="type_of_data_source" id="id_type_of_data_source" data-init-plugin='select2'
+                  class="custom-select">
+                </select>
+                <small id="type_of_data_source_help" class="form-text text-muted">
+                  Вид источника данных (выбор из справочника)
+                </small>
+              </div>
+
+              <div class="form-group" aria-describedby="internal_identifier_help">
+                <label for="internal_identifier">
+                  Внутренний идентификатор источника данных
+                </label>
+                <input type="text" name="internal_identifier" id="id_internal_identifier"
+                  class="form-control form-control-sm">
+                <small id="internal_identifier_help" class="form-text text-muted">
+                </small>
+                <div class="invalid-feedback">
+                  Введите Внутренний идентификатор источника данных
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="regulatory_documents_help">
+                <label for="regulatory_documents">Регулирующие документы</label>
+                <textarea name="regulatory_documents" id="id_regulatory_documents" rows="5"
+                  class="form-control form-control-sm">
+                                </textarea>
+                <small id="regulatory_documents_help" class="form-text text-muted">
+                  Введите Регулирующие документы
+                </small>
+                <div class="invalid-feedback">Введите Регулирующие документы</div>
+              </div>
+
+              <div class="form-group" aria-describedby="data_owner_help">
+                <label for="data_owner">Владелец данных</label>
+                <input type="text" name="data_owner" id="id_data_owner" class="form-control form-control-sm">
+                <small id="data_owner_help" class="form-text text-muted">
+                  Введите Владельца данных
+                </small>
+                <div class="invalid-feedback">Введите Владельца данных</div>
+              </div>
+
+              <div class="form-group" aria-describedby="data_operator_help">
+                <label for="data_operator">Оператор данных</label>
+                <input type="text" name="data_operator" id="id_data_operator" class="form-control form-control-sm">
+                <small id="data_operator_help" class="form-text text-muted">
+                  Введите Оператора данных
+                </small>
+                <div class="invalid-feedback">Введите Оператора данных</div>
+              </div>
+
+              <div class="form-group" aria-describedby="relation_to_the_data_lifecycle_help">
+                <label for="relation_to_the_data_lifecycle">Отношение к ЖЦ данных</label>
+                <select name="relation_to_the_data_lifecycle" id="id_relation_to_the_data_lifecycle"
+                  data-init-plugin='select2' class="custom-select form-control form-control-sm">
+                </select>
+                <small id="relation_to_the_data_lifecycle_help" class="form-text text-muted">
+                  Отношение к ЖЦ данных (выбор из справочника)
+                </small>
+              </div>
+
+            </div>
+
+
+            <div class="card-box">
+              <a href="#connect_info" data-toggle="collapse" aria-expanded="false" aria-controls="connect_info">
+                <i class="fas fa-chevron-down"></i>
+                Настройка соединения
+                <i class="fas fa-chevron-down"></i>
+              </a>
+            </div>
+            <div id="connect_info" class="collapse" data-parent="#accordion">
+
+              <div class="form-group" aria-describedby="versions_count_for_load_help">
+                <label for="versions_count_for_load">Количество версий для загрузки данных из
+                  источника</label>
+                <input type="text" name="versions_count_for_load" id="id_versions_count_for_load"
+                  class="form-control form-control-sm" placeholder="Количество версий для загрузки" required value="10">
+                <small id="chunks_help" class="form-text text-muted">
+                  Количество версий для загрузки (от 1 до 10)
+                </small>
+                <div class="invalid-feedback">
+                  Введите количество версий для загрузки
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="type_source_help">
+                <label for="type_source">
+                  Тип источника
+                </label>
+                <select name="type_source" id="id_type_source" data-init-plugin='select2'
+                  class="custom-select  form-control form-control-sm" placeholder="Выберите тип источника" required>
+                </select>
+                <small id="type_source_help" class="form-text text-muted">
+                  Укажите тип источника
+                </small>
+                <div class="invalid-feedback">
+                  Выберите тип источника
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="dbapi_help">
+                <label for="dbapi">Тип базы данных</label>
+                <select name="dbapi" id="id_dbapi" data-init-plugin='select2'
+                  class="custom-select form-control form-control-sm" placeholder="Выберите тип базы данных" required>
+                </select>
+                <small id="dbapi_help" class="form-text text-muted">
+                  Выберите необходимый тип базы данных
+                </small>
+                <div class="invalid-feedback">
+                  Выберите тип базы данных
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="type_any_files_source_help">
+                <label for="type_any_files_source">
+                  Тип подключения источника неструктурированных файлов
+                </label>
+                <select name="type_any_files_source" id="id_type_any_files_source" data-init-plugin='select2'
+                  class="custom-select form-control form-control-sm"
+                  placeholder="Выберите тип подключения источника неструктурированных файлов" required>
+                </select>
+                <small id="type_any_files_source_help" class="form-text text-muted">
+                  Выберите необходимый тип подключения источника неструктурированных файлов
+                </small>
+                <div class="invalid-feedback">
+                  Выберите тип подключения источника неструктурированных файлов
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="host">Хост</label>
+                <input type="text" name="host" id="id_host" class="form-control form-control-sm"
+                  placeholder="Введите адрес хоста" required>
+                <div class="invalid-feedback">
+                  Введите адрес хоста
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="port">Порт</label>
+                <input type="text" name="port" id="id_port" class="form-control form-control-sm"
+                  placeholder="Введите порт" required>
+                <div class="invalid-feedback">
+                  Введите порт
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="database">База данных</label>
+                <input type="text" name="database" id="id_database" class="form-control form-control-sm"
+                  placeholder="Введите название базы данных" required>
+                <div class="invalid-feedback">
+                  Введите название базы данных
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="mongodb_collection_help">
+                <label for="mongodb_collection">Коллекция в MongoDB</label>
+                <input type="text" name="mongodb_collection" id="id_mongodb_collection"
+                  class="form-control form-control-sm" placeholder="Укажите коллекцию в MongoDB" required>
+                <small id="mongodb_collection_help" class="form-text text-muted">
+                  Укажите коллекцию в MongoDB
+                </small>
+                <div class="invalid-feedback">
+                  Укажите коллекцию в MongoDB
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="mongodb_file_src_help">
+                <label for="mongodb_file_src">Идентификатор источника файлов в MongoDB</label>
+                <input type="text" name="mongodb_file_src" id="id_mongodb_file_src" class="form-control form-control-sm"
+                  placeholder="Укажите идентификатор источника файлов в MongoDB" required>
+                <small id="mongodb_file_src_help" class="form-text text-muted">
+                  Укажите идентификатор источника файлов в MongoDB
+                </small>
+                <div class="invalid-feedback">
+                  Укажите идентификатор источника файлов в MongoDB
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="ssl_ca_certs_help">
+                <label for="ssl_ca_certs">Путь к файлу сертификата</label>
+                <input type="text" name="ssl_ca_certs" id="id_ssl_ca_certs" class="form-control form-control-sm"
+                  placeholder="Введите полный путь в к файлу сертификата" value="">
+                <small id="ssl_ca_certs_help" class="form-text text-muted">
+                  Полный путь в к файлу сертификата /path/to/cert/file.crt
+                </small>
+                <div class="invalid-feedback">
+                  Введите полный путь в к файлу сертификата
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="threads_help">
+                <label for="threads">Количество потоков</label>
+                <input type="text" name="threads" id="id_threads" class="form-control form-control-sm"
+                  placeholder="Введите количество потоков (от 1 до 10)" required value="1">
+                <small id="threads_help" class="form-text text-muted">
+                  Количество потоков определяет - сколько потоков будет использоваться при загрузке.
+                  Значения
+                  от 1
+                  до 10.
+                </small>
+                <div class="invalid-feedback">
+                  Введите количество потоков (от 1 до 10)
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="chunks_help">
+                <label for="chunks">Размер партиции (в МБ)</label>
+                <input type="text" name="chunks" id="id_chunks" class="form-control form-control-sm"
+                  placeholder="Размер партиции в мегабайтах (по умолчанию 128 МБ памяти в стеке)" required value="128">
+                <small id="chunks_help" class="form-text text-muted">
+                  Размер партиции в мегабайтах (по умолчанию 128 МБ памяти в стеке)
+                </small>
+                <div class="invalid-feedback">
+                  Введите размер партиции
+                </div>
+              </div>
+
+              <div class="form-group" aria-describedby="lim_lob_size_help">
+                <label for="lim_lob_size">Ограничение на размер данных LOB (в МБ)</label>
+                <input type="text" name="lim_lob_size" id="id_lim_lob_size" class="form-control form-control-sm"
+                  placeholder="Ограничение на размер данных LOB полей в мегабайтах (по умолчанию 8 МБ), больше
+                        которого данные будут записаны в отдельные файлы " required value="8">
+                <small id="lim_lob_size_help" class="form-text text-muted">
+                  Ограничение на размер данных LOB полей в мегабайтах (по умолчанию 8 МБ), больше
+                  которого данные будут записаны в отдельные файлы
+                </small>
+                <div class="invalid-feedback">
+                  Введите ограничение на размер данных
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="username">Логин</label>
+                <input type="text" name="username" id="id_username" class="form-control form-control-sm"
+                  placeholder="Введите логин для подключения" required autocomplete="off">
+                <div class="invalid-feedback">
+                  Введите логин для подключения
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" name="password" id="id_password" onfocus="this.removeAttribute('readonly');" readonly class="form-control form-control-sm"
+                  placeholder="Введите пароль для подключения" required autocomplete="off">
+                <div class="invalid-feedback">
+                  Введите пароль для подключения
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-outline-success btn-sm paddind_bottom_10" id="id_test_connection">
+                Проверить соединение
+              </button>
+              <p id="id_check_db_text"></p>
+
+              <label id="id_label_schema_tree">Выберите одну или несколько схем и таблиц</label>
+              <div id="id_schema_tree"></div>
+
+
+              <div class="form-group">
+                <label for="file_type">Тип файлов</label>
+                <select name="file_type" id="id_file_type" data-init-plugin='select2'
+                  class="custom-select form-control form-control-sm" placeholder="Выберите тип файлов"
+                  required></select>
+                <div class="invalid-feedback">Выберите тип файлов</div>
+              </div>
+
+              <div class="form-group">
+                <label for="csv_delimiter">Разделитель колонок csv</label>
+                <input type="text" name="csv_delimiter" id="id_csv_delimiter" class="form-control form-control-sm">
+                <div class="help">
+                  По умолчанию в качестве разделителя колонок используется <strong>запятая</strong>. В
+                  этом случае
+                  <strong>оставьте поле пустым</strong>.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="csv_quotechar">Ограничитель данных в ячейках csv</label>
+                <input type="text" name="csv_quotechar" id="id_csv_quotechar" class="form-control form-control-sm">
+                <div class="help">
+                  Ограничители данных в ячейках csv файла могут отсутствовать, а могут быть использованы
+                  кавычки или другой символ.
+                  Если ограничитель данных в ячейках отсутствует - оставьте данное поле пустым
+                  В противном случае укажите один символ ограничителя, например "
+                  <strong>ЗАМЕЧАНИЕ: Если указан ограничитель данных в ячейках - то данные ВО ВСЕХ ячейках должны быть
+                    ограничены этим символом!</strong>.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="file_path">Путь к каталогу с файлами</label>
+                <div class="input-group mb-3">
+                  <input type="text" name="file_path" id="id_file_path" class="form-control form-control-sm"
+                    placeholder="Введите путь к файлам" required>
+                  <button type="button" class="btn btn-outline-success btn-sm" id="id_test_files">
+                    Проверить каталог
+                  </button>
+                  <div class="invalid-feedback">Введите путь к каталогу с файлами</div>
+                </div>
+              </div>
+              <p id="id_check_db_text">Проверка не производилась</p>
+
+              <div class="custom-control custom-switch" aria-describedby="files_need_scan_subdirs_help">
+                <input type="checkbox" class="custom-control-input" id="id_files_need_scan_subdirs" value="">
+                <label class="custom-control-label" for='id_files_need_scan_subdirs'>
+                  Сканировать подкаталоги
+                </label>
+                <small id="files_need_scan_subdirs_help" class="form-text text-muted">
+                  Укажите, есть ли необходимость сканировать подкаталоги или достаточно обработать только первый
+                  уровень?
+                </small>
+              </div>
+
+
+              <div class="form-group">
+                <label for="file_schema">Схема файлов</label>
+                <div class="input-group mb-3">
+                  <input type="text" name="file_schema" class="form-control form-control-sm" placeholder="Схема файлов"
+                    id="id_file_schema">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="tooltip"
+                      title="Изменить сущность" id="id_button_edit_file_schema">
+                      <i class='far fa-edit'></i>
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" type="button" id="id_button_delete_file_schema"
+                      data-toggle="tooltip" title="Удалить сущность"
+                      onclick="return confirm('Вы уверены, что хотите удалить схему?')">
+                      <i class='fas fa-trash-alt'></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="form-group">
+                <label for="file_schema">Схема обработки файлов</label>
+                <select name="file_schema" id="id_file_schema" data-init-plugin='select2' class="custom-select"
+                  placeholder="Выберите схему обработки файлов" required></select>
+                <div class="invalid-feedback">Выберите схему обработки файлов</div>
+                <button id="schema-add" type="button" class="btn btn-sm btn-outline-info">Добавить новую
+                  схему обработки файлов</button>
+              </div> -->
+            </div>
+
+            <!-- <div class="card-box">
+                            <a href="#quality_control" data-toggle="collapse" aria-expanded="false"
+                                aria-controls="quality_control">
+                                <i class="fas fa-chevron-down"></i>
+                                Контроль качества
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                        </div>
+                        <div id="quality_control" class="collapse" data-parent="#accordion">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" name="need_quality_control" id="id_need_quality_control"
+                                    class="custom-control-input" value="">
+                                <label class="custom-control-label" for="id_need_quality_control">
+                                    Необходим контроль качества
+                                </label>
+                                <div class="invalid-feedback">Укажите, если необходим контроль качества данных</div>
+                            </div>
+                        </div>-->
+          </div>
+        </div>
+        <div class="edit-footer-fixed center">
+          <button class="btn btn-outline-success btn-sm" type="submit" id="id_button_save">Сохранить</button>
+
+          <a href='/sources/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+  <div th:replace="~{sources/_modal_add_csv_file_schema :: item}"></div>
+</section>
+</body>
+</html>

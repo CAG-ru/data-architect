@@ -1,0 +1,166 @@
+@charset "UTF-8";
+.page-name {
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px; }
+
+.sources-columns {
+  position: relative;
+  float: left;
+  width: 20%;
+  min-width: 250px;
+  background: #fefefe;
+  box-shadow: inset 0px 0px 10px #555; }
+
+.sources-list-columns {
+  height: 80vh; }
+
+.sources-list-columns #sources_list {
+  height: 65vh;
+  overflow-y: auto; }
+
+.sources-list-columns #sources_list ul li {
+  margin-right: 10px;
+  padding: 0px 0px 0px 10px; }
+
+.sources-list-columns #sources_list ul li:hover {
+  background-color: #eee; }
+
+.sources-list-columns #sources_list ul li.source-listitem-selected {
+  background-color: #ddd; }
+
+.sources-col #sources_list ul li a {
+  text-decoration: underline; }
+
+.sources-list-before {
+  font-style: italic;
+  padding: 0px 10px 5px 10px; }
+
+/* Колонка со списком таблиц */
+.tables-list-columns {
+  height: 80vh; }
+
+.tables-list-columns #tables_list {
+  height: 65vh;
+  overflow-y: auto; }
+
+.tables-list-columns #tables_list ul li {
+  margin-right: 10px;
+  padding: 0px 0px 0px 10px; }
+
+.tables-list-columns #tables_list ul li:hover {
+  background-color: #eee; }
+
+.tables-list-columns #tables_list ul li.listitem-selected {
+  background-color: #ddd; }
+
+.panel-col {
+  position: relative;
+  float: left;
+  width: 100%; }
+
+ul {
+  padding: 0px; }
+
+li {
+  list-style-type: none; }
+
+.notice_place {
+  display: inline-block;
+  float: right;
+  color: #28a745;
+  padding: 17px 17px; }
+
+.button_place {
+  display: inline-block;
+  float: right;
+  text-align: right;
+  padding: 10px 0px 10px 10px; }
+
+.contenteditable {
+  background-color: #fff;
+  padding: 2px 2px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  word-break: break-word; }
+
+.contenteditable-50 {
+  min-height: 50px; }
+
+.contenteditable-textarea {
+  min-height: 100px; }
+
+.tree-sources {
+  height: 800px;
+  overflow-x: scroll;
+  overflow-y: scroll; }
+
+#table_columns_view tr th:nth-child(1) {
+  width: 200px; }
+
+.source-table-column-parameters-table {
+  width: 100%; }
+
+.source-table-column-parameters-table tr td:nth-child(1) {
+  width: 200px; }
+
+.sources-heading {
+  font-family: "Ubuntu Condensed", sans-serif;
+  letter-spacing: 2px;
+  font-size: 17px;
+  text-transform: uppercase;
+  padding: 10px; }
+
+.head-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55; }
+
+.tables-heading {
+  background-color: #1c2e5e; }
+
+#table_header {
+  font-weight: bold;
+  font-size: 18px;
+  font-size: 24px;
+  margin: 20px 0px 0px 0px; }
+
+.table-common-info tr td:nth-child(1) {
+  width: 180px; }
+
+.table-common-info tr td:nth-child(3) {
+  width: 50px; }
+
+#table_columns {
+  margin-bottom: 70px; }
+
+#table_columns .tab-content {
+  overflow-y: scroll;
+  max-height: 80vh; }
+
+/* table data */
+#table_data {
+  width: 100%; }
+
+.tab-content {
+  width: 100%; }
+
+.tab-header {
+  width: 100%; }
+
+.btn-sources-save {
+  float: right; }
+
+.scroll-x {
+  overflow-x: scroll; }
+
+#modal_add_file_schema {
+  z-index: 10000; }
+
+/* --------- jsTree -------- */
+.jstree-default .jstree-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+/*# sourceMappingURL=sources.css.map */

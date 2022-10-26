@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Уведомления</title>
+</head>
+
+<body>
+  <section>
+    <div class="page-name" id='notice-page'></div>
+
+    <!-- <link th:href="@{/styles/connects/connects.css}" rel="stylesheet" type="text/css" /> -->
+    <script th:src="@{/js/notice/notice-page.js}" defer="defer"></script>
+    <div class="container-fluid">
+      <!-- START BREADCRUMB -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active">Уведомления</li>
+      </ol>
+
+      
+      <!-- END BREADCRUMB -->
+      <div th:insert="~{notice/_notices_list :: item}"></div>
+
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <title>Редактирование сущности</title>
+</head>
+
+<body>
+  <section>
+    <div class="page-name" id='entities-page'></div>
+    <link th:href="@{/styles/entity/entities.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/plugins/ckeditor-markdown/ckeditor.js}" type="text/javascript"></script>
+    <script th:src="@{/js/entities/edit-entity.js}" defer="defer"></script>
+
+    <!-- Здесь передается id сущности, если она подается на редактирование -->
+    <div id="entity_id" th:if="${entity_id}" th:data-entity_id="${entity_id}"></div>
+
+    <div>
+      <div class="row">
+        <div class="col-lg-12" id="edit_entity">
+          <form class="was-validated" action="/entities/" id='id_form_entity_edit'>
+            <div class="edit-body">
+              <div class=" mb_panel with-shadow white-background" id="accordion">
+                <div>
+                  <h4>
+                    <th:block th:if="${entity_id!=null}">Редактирование</th:block>
+                    <th:block th:if="${entity_id==null}">Создание</th:block>
+                    сущности
+                    <th:block th:if="${entity!=null}" th:text="${entity.entityName}"></th:block>
+                  </h4>
+                  <div>
+                    <small class="form-text text-muted font-italic">Сущность - основная колонка данных,
+                      относительно которой
+                      будет построена витрина. В качестве сущности, например, выбирают поля: название
+                      организации,
+                      или проекта, или имя персоны, либо схожие по смыслу колонки данных. Допустимы
+                      для выбора и
+                      другие колонки.</small>
+                  </div>
+                  <br>
+                </div>
+                <div class="form-group" aria-describedby="connect_help">
+                  <label for="connect">Источник данных</label>
+                  <select name="connect" id="id_connect" data-init-plugin='select2' class="custom-select">
+                  </select>
+                  <small id="connect_help" class="form-text text-muted">
+                    Источник данных (выбор из списка)
+                  </small>
+                </div>
+
+                <div class="form-group" aria-describedby="metadata_help">
+                  <label for="metadata">Таблица</label>
+                  <select name="metadata" id="id_metadata" data-init-plugin='select2' class="custom-select">
+                  </select>
+                  <small id="metadata_help" class="form-text text-muted">
+                    Таблица (выбор из списка)
+                  </small>
+                </div>
+
+                <div class="form-group" aria-describedby="column_name_help">
+                  <label for="column_name">Столбец</label>
+                  <select name="column_name" id="id_column_name" data-init-plugin='select2' class="custom-select">
+                  </select>
+                  <small id="column_name_help" class="form-text text-muted">
+                    Столбец (выбор из списка)
+                  </small>
+                </div>
+
+                <div class="form-group">
+                  <label for="entity_name">Наименование сущности</label>
+                  <input type="text" name="entity_name" id="id_entity_name" class="form-control form-control-sm"
+                    required>
+                  <div class="invalid-feedback">Введите наименование сущности</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Описание сущности</label>
+                  <textarea name="description" id="id_description" class="form-control form-control-sm"></textarea>
+                </div>
+
+              </div>
+            </div>
+            <div class="edit-footer-fixed center">
+              <button class="btn btn-outline-success btn-sm" type="button" id="id_button_save">
+                <i class="fa fa-save"></i>
+                Сохранить
+              </button>
+              <a href='/entities/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

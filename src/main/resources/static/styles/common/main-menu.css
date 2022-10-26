@@ -1,0 +1,62 @@
+.side-menu {
+  /* font-family: 'Roboto', sans-serif; */
+  position: fixed;
+  top: 62;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 60px;
+  list-style-type: none;
+  background: rgb(70, 150, 61);
+  overflow: hidden;
+  transition: width .5s;
+  z-index: 20;
+}
+
+.side-menu-icon {
+  margin-left: 1.2em;
+}
+
+.side-menu:hover {
+  width: 300px;
+}
+
+.side-menu li {
+  width: 300px;
+}
+
+.side-menu li .logo {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin-left: 0.5em;
+}
+
+.side-menu li span {
+  font-size: 1rem;
+  margin: 0 0 0 22px;
+}
+
+.side-menu li.current a span.side-menu-icon {
+  color: yellow;
+  font-size: 1.5em;
+  margin-left: 20px;
+}
+
+.side-menu li a {
+  display: block;
+  font-size: .9rem;
+  text-decoration: none;
+  color: rgb(242, 251, 242);
+  height: 60px;
+  padding-top: 1.2em;
+}
+
+.side-menu li a:hover,
+.side-menu li a.side-menu-icon:hover {
+  background: rgb(96, 198, 87);
+  display: block;
+  padding-top: 1.2em;
+  color: bisque;
+}

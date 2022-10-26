@@ -1,0 +1,137 @@
+<div th:fragment="item">
+<table class="table table-hover table-sm" >
+  <thead class="thead-dark">
+    <tr>
+      <th class='left'>№</th>
+      <th class='left'>Приоритет</th>
+      <th class='left'>Название витрины</th>
+      <th class='left'>Создана</th>
+      <th class='left'>Изменена</th>
+      <th class='left' id="th_date_due_table">Срок действия</th>
+      <th class='left'>Название таблицы</th>
+      <th class='left' id="th_date_create_table">Дата создания таблицы</th>
+      <th class='left'>Подписчиков</th>
+      <th class='left'>Статистика</th>
+      <th class='left'></th>
+    </tr>
+  </thead>
+  <tbody th:if="${mart_con !=null }">
+    <tr th:each="mart,iter : ${mart_con}">
+      <td class='left' th:text="${iter.index+1}">.</td>
+      <td class='left'
+      th:text="${mart.priority}">
+      </td>
+      <td class='left'>
+        <a th:href="${'/marts/viewmart/'+mart.id}" class="link-like-block">
+          <th:block th:text="${mart.martInfo.martName}"></th:block>
+          <span
+          th:if="mart.martInfo.martDescription!=null"
+          >
+            <i class='fas fa-info-circle icon green' data-toggle="tooltip"
+              th:title="${mart.martInfo.martDescription}"></i>
+          </span>
+        </a>
+      </td>
+      <td class='left'>
+        <th:block th:text="${mart.createdBy}"></th:block>
+        <br>
+        <th:block th:text="${#calendars.format(mart.createdAt,'dd.MM.yyyy')}"></th:block>
+      </td>
+      <td class='left'>
+        <th:block th:text="${mart.updatedBy}"></th:block>
+        <br>
+        <th:block th:utext="${#calendars.format(mart.updatedAt,'dd.MM.yyyy')}"></th:block>
+      </td>
+      <td class='left' >
+        <th:block th:if="${mart.martInfo.martPermanent}">Постоянная</th:block>
+        <th:block th:if="${!mart.martInfo.martPermanent}"
+          th:text="${#calendars.format(mart.martInfo.martDueDate,'dd.MM.yyyy')}"></th:block>
+      </td>
+      <td class='left' th:text="${mart.martInfo.martDestTable}"></td>
+      <td class='left'>
+        <th:block
+        th:if="${mart.createdTableAt!=null}"
+        th:text="mart.createdTableAt"
+        ></th:block>
+        <a
+                th:if="${mart.createdTableAt==null}"
+                class="btn btn-sm btn-outline-primary" th:href="${'/marts/create-table/'+mart.id }"
+          data-toggle="tooltip" title="Создать таблицу с витриной данных">
+          <i class='fas fa-magic'></i>
+        </a>
+      </td>
+      <td class='left'>0</td>
+      <td class='left'>
+        <button class="btn-statistics btn btn-info btn-sm"
+                th:data-text="${ 'Кол-во строк: '+(mart.martInfo.martRowsCount!=null?mart.martInfo.martRowsCount:0) }"
+          th:data-title="${mart.martInfo.martName}">Статистика</button>
+      </td>
+      <td class='center'>
+        <div class="btn-group">
+<!--          {% canChangeMart user.username mart.created_by user.is_staff as canChangeMartUser %}-->
+<!--          {% if canChangeMartUser %}-->
+          <a class="btn btn-outline-primary btn-sm" role='button' th:href="${'manage-mart/?action=edit&cid='+mart.id}"
+            data-toggle="tooltip" title="Изменить витрину данных">
+            <i class='far fa-edit'></i>
+          </a>
+          <a class="btn btn-outline-primary btn-sm" role='button'
+            th:href="${'/marts/edit_addition/'+mart.id}" data-toggle="tooltip"
+            title="Изменить дополнительное описание витрины данных">
+            <i class='far fa-comment-alt'></i>
+          </a>
+<!--          {% endif %}-->
+          <a class="btn btn-outline-primary btn-sm" role='button'
+             th:href="${'/marts/create-table/'+mart.id}"
+            data-toggle="tooltip" title="Создать таблицу с витриной данных">
+            <i class='fas fa-magic'></i>
+          </a>
+          <!-- <a class="dropdown-item" href='viewmart/?cid={{ mart.id}}' data-toggle="tooltip" title="Просмотр витрины данных"><i
+                class='far fa-eye icon green size24'></i>
+              </a> -->
+<!--          <a class="btn btn-outline-primary btn-sm" role='button'-->
+<!--            th:href="${'manage-mart/?action=unsubscribe&cid='+mart.id}" data-toggle="tooltip"-->
+<!--            title="Отписаться от витрины данных">-->
+<!--            <i class='fas fa-eraser'></i>-->
+<!--          </a>-->
+<!--          <a class="btn btn-outline-primary btn-sm" role='button'-->
+<!--             th:href="${'manage-mart/?action=subscribe&cid='+mart.id}"-->
+<!--            data-toggle="tooltip" title="Подписаться на витрину данных">-->
+<!--            <i class='fas fa-pencil-alt'></i>-->
+<!--          </a>-->
+          <a class="btn btn-outline-danger btn-sm delete_mart" role='button'
+            th:href="${'/marts/delete/'+mart.id}" th:data-val="${mart.id}" data-toggle="tooltip"
+            title="Удалить витрину данных" onclick="return confirm('Вы уверены, что хотите удалить витрину данных?')">
+            <i class='fas fa-trash-alt'></i>
+          </a>
+<!--          {% endif %}-->
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <div class="pagination"
+       th:if="${mart_con.getTotalPages()>1}"
+  >
+    <span class="step-links">
+      <span class="current">
+        Страница <th:block th:text="${mart_con.getNumber()+1}"></th:block> из <th:block
+              th:text="${mart_con.getTotalPages()}"></th:block>.
+      </span>
+
+        <th:block th:if="${mart_con.hasPrevious()}">
+      <a href="?page=1">&laquo; первая</a>
+      <a th:href="${'?page='+(mart_con.previousOrFirstPageable().getPageNumber()+1)}">предыдущая</a>
+        </th:block>
+
+      <th:block
+              th:if="${mart_con.hasNext()}"
+      >
+             <a th:href="${'?page='+(mart_con.nextOrLastPageable().getPageNumber()+1)}">следующая</a>
+      <a th:href="${'?page='+mart_con.getTotalPages()}">последняя &raquo;</a>
+      </th:block>
+    </span>
+  </div>
+
+<div id="dialog-mart-statistics" style="display:none;">
+</div>
+</div>

@@ -1,0 +1,439 @@
+@import "bootstrap";
+
+
+// -------------------------------------------
+// Для промедуточного заголовка
+.middle_header {
+  padding-top: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  width: 300px;
+}
+
+// -------------------------------------------
+// Приямоугольный бокс с текстом
+.card-box {
+  padding: 0.45rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(145, 134, 134, 0.36);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+// -------------------------------------------
+// фиксированная панель для формы редатирования расположена в нижней части экрана
+.edit-footer-fixed {
+  box-shadow: 0 -2px 4px 0 #c6c9cb;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+  background: #fff;
+  text-align: left;
+  z-index: 900;
+}
+
+.edit-body {
+  padding-bottom: 45px;
+}
+
+// -------------------------------------------
+// Переопределение стилей table
+// Уменьшение элементов ->
+.table tbody tr td {
+  padding: 8px;
+}
+
+// -------------------------------------------
+// Перепределение стилей класса alert
+.alert {
+  padding: 0.15rem 1.25rem;
+}
+
+// -------------------------------------------
+// Перепределение стилей класса btn-sm
+.btn-group-sm>.btn-sm {
+  padding: 0.15rem 0.5rem;
+}
+
+
+.btn-group-sm>.btn-sm2 {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.6rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+
+// -------------------------------------------
+// Перепределение стилей класса nav-tabs
+.nav-tabs>li>a {
+  padding: 8px 10px;
+}
+
+// -------------------------------------------
+// Перепределение стилей класса breadcrumb
+.breadcrumb {
+  padding: 0.25rem 1em;
+  ;
+}
+
+// <-
+
+// .jstree-anchor,
+// .jstree-anchor:link,
+// .jstree-anchor:visited,
+.jstree-anchor:hover {
+  color: blue;
+}
+
+// .jstree-anchor:active .jstree-icon {
+//   color: #009933;
+// }
+
+.page-content-wrapper {
+  background-color: rgb(241, 241, 241);
+}
+
+.mb_panel {
+  margin: 5px;
+  padding: 15px;
+  min-height: 26px;
+
+  &.with-shadow {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 12px;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  &.white-background {
+    background-color: white;
+  }
+
+  &.gray-background {
+    background-color: rgb(241, 241, 241);
+  }
+
+  &.with-border {
+    border: 1px solid rgb(228, 231, 235);
+
+  }
+}
+
+// -----------------------------------------
+.center {
+  text-align: center;
+}
+
+.paddind_bottom_10 {
+  padding-bottom: 10px;
+}
+
+// ===============================================================
+// ========================    icon   =========================
+// ===============================================================
+
+.icon {
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &.size24 {
+    font-size: 24px;
+  }
+
+  &.size30 {
+    font-size: 36px;
+  }
+
+  &.size36 {
+    font-size: 36px;
+  }
+
+  &.red {
+    color: red;
+  }
+
+  &.green {
+    color: green;
+  }
+
+  &.blue {
+    color: blue;
+  }
+}
+
+// ===============================================================
+// ========================    portlet   =========================
+// ===============================================================
+.sortable_row {
+  // width: 500px;
+  // float: left;
+  // padding-bottom: 100px;
+  display: inline-block;
+  height: 150px;
+  padding: 2px 1px;
+  border: 2px solid #aaf;
+}
+
+.portlet {
+  // margin: 0 1em 1em 0;
+  padding: 0.3em;
+  min-width: 50px;
+  // height: 46px;
+}
+
+.portlet-header {
+  padding: 0.2em 0.3em;
+  margin-bottom: 0.5em;
+  position: relative;
+  min-height: 20px;
+}
+
+.portlet-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -8px;
+  color: red;
+  text-shadow: #444 1px 1px 0;
+
+}
+
+.portlet-content {
+  padding: 0.4em;
+}
+
+.portlet-placeholder {
+  height: 4em;
+  line-height: 1.2em;
+  background: green;
+}
+
+// ===============================================================
+// ========================              =========================
+// ===============================================================
+
+.set-margin {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+.remove_margin_bottom {
+  margin-bottom: 0
+}
+
+.tiny-text {
+  font-size: 80%;
+}
+
+.italic-text {
+  font-style: italic;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.indent-text0 {
+  text-indent: 0;
+}
+
+.indent-text1 {
+  text-indent: 1em;
+}
+
+.indent-text2 {
+  text-indent: 2em;
+}
+
+.indent-text3 {
+  text-indent: 3em;
+}
+
+.indent-text4 {
+  text-indent: 4em;
+}
+
+.text-size-1-6-em {
+  font-size: 1.6em;
+}
+
+.text-size-1-7-em {
+  font-size: 1.7em;
+}
+
+.text-size-1-8-em {
+  font-size: 1.8em;
+}
+
+.text-size-2-em {
+  font-size: 2em;
+}
+
+.text-size-3-em {
+  font-size: 3em;
+}
+
+.text-with-shadow {
+  text-shadow: #444 1px 1px 0;
+}
+
+// ===============================================================
+// ========================  glyphicons  =========================
+// ===============================================================
+
+.set-glyphicon-margin {
+  margin-right: 4px;
+}
+
+.set-glyphicon-shadow {
+  text-shadow: #444 1px 1px 0;
+}
+
+.color_red {
+  color: red;
+}
+
+.color_pink {
+  color: pink;
+}
+
+.color_gray {
+  color: gray;
+}
+
+.color_green,
+.icon_color_is_success {
+  color: green;
+}
+
+.color_light_green,
+.icon_color_show {
+  color: #009933;
+}
+
+.color_blue {
+  color: blue;
+}
+
+.color_yellow {
+  color: yellow;
+}
+
+.icon_color_remove {
+  color: black;
+}
+
+.background_red_10 {
+  background: #ffcccc;
+}
+
+.background_green_10 {
+  background: #ccffdd;
+}
+
+.background_orange {
+  background: #ffbf00;
+}
+
+.background_orange_80 {
+  background: #ffe699;
+}
+
+.background_white {
+  background: white;
+}
+
+.background_gray {
+  background: gray;
+}
+
+.opacity_06 {
+  opacity: 0.6;
+}
+
+.notification-block {
+  width: 400px;
+  // height: 100px;
+  // padding: 10px;
+  margin: 1em;
+  background: lightyellow;
+  border-radius: 5px;
+  border: 1px solid yellow;
+  color: black;
+  position: fixed;
+  top: 10px;
+  right: 0px;
+  line-height: 18px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: -3px 3px 15px #ddd;
+  -webkit-box-shadow: -3px 3px 15px #ddd;
+  -o-box-shadow: -3px 3px 15px #ddd;
+
+  .notification-title {
+    // text-align: center;
+    font-size: large;
+    font-weight: bold;
+    font-family: Verdana, sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    // padding-bottom: 10px;
+    padding: 0.5em;
+  }
+
+  .notification-text {
+    // padding-bottom: 10px;
+    padding: 0.5em;
+    font-size: small;
+    color: black;
+    // padding: 1em;
+  }
+
+  &.success {
+    background: rgb(191, 241, 191);
+    border: 1px solid $success;
+    color: black;
+
+    .notification-title {
+      color: black;
+    }
+  }
+
+  &.danger {
+    background: rgb(235, 182, 189);
+    border: 1px solid $danger;
+    color: darkred;
+
+    .notification-title {
+      color: darkred;
+    }
+  }
+
+  a.close {
+    position: absolute;
+    color: $body-color;
+    cursor: pointer;
+    top: 5px;
+    right: 5px;
+    text-decoration: none;
+    border: none
+  }
+}
+
+.footer-system-utils {
+  font-size: small;
+  text-align: right;
+  color: #ddd;
+}
+
+.custom-select.correct {
+  border: $custom-select-border-width solid #28a745;
+}
+
+.custom-select.incorrect {
+  border: $custom-select-border-width solid #dc3545;
+}
+
+.text-center {
+  text-align: center;
+}

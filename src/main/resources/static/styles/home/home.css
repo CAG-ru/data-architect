@@ -1,0 +1,29 @@
+.text-center {
+  text-align: center; }
+
+.index-panel {
+  text-align: center;
+  max-width: 700px;
+  margin: 50px auto; }
+
+.index-panel div {
+  background: #343a40;
+  display: inline-block;
+  margin: 20px; }
+
+.index-panel div:hover {
+  background: #145a40;
+  box-shadow: 0px 0px 10px  #555; }
+
+.index-panel div a {
+  width: 300px;
+  height: 150px;
+  padding: 20px;
+  font-size: 34px;
+  display: block;
+  color: #fff; }
+
+/* .index-panel div a:hover {
+} */
+
+/*# sourceMappingURL=home.css.map */

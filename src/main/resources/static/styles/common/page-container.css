@@ -1,0 +1,104 @@
+/* Page Container
+------------------------------------
+*/
+.page-container {
+  width: 100%;
+  height: 100%;
+  padding-left: 70px;
+}
+.page-container .page-content-wrapper {
+  min-height: 100%;
+  position: relative;
+}
+.page-container .page-content-wrapper .content {
+  /* Content holder */
+  z-index: 10;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  min-height: 100%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.page-container .page-content-wrapper .content.full-width {
+  width: 100%;
+}
+.page-container .page-content-wrapper .content .content-inner {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  padding-left: 30px;
+  position: relative;
+}
+.page-container .page-content-wrapper .content:only-child {
+  /*padding-bottom: 0px;*/
+}
+.page-container .page-content-wrapper .content.overlay-footer {
+  padding-bottom: 0px;
+}
+.page-container .page-content-wrapper .footer {
+  /* Footer */
+  width: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+}
+.page-container .page-content-wrapper .footer.fixed {
+  position: fixed;
+}
+.page-title {
+  margin-top: 0px;
+}
+.group-container {
+  white-space: nowrap !important;
+}
+.group-container .single-group {
+  vertical-align: top;
+  display: inline-block;
+  white-space: normal;
+}
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+.jumbotron .inner {
+  position: relative;
+  z-index: 2;
+}
+.jumbotron.lg {
+  height: 600px;
+}
+.jumbotron .cover-photo {
+  width: 100%;
+  height: inherit;
+  overflow: hidden;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  background-size: cover;
+  background-color: #fff;
+}
+
+.jumbotron h1 {
+  font-size: 44px;
+}
+/* Other overides */
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+  position: relative;
+}
+.copyright {
+  padding: 25px 0;
+  border-top: 1px solid rgba(98, 98, 98, 0.07);
+}
+.copyright p {
+  font-family: 'PT_Russia Text', sans-serif;
+}
+.pager {
+  margin: 0;
+}

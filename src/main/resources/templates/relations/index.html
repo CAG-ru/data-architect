@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Связи между источниками</title>
+</head>
+<body>
+<section>
+    <link th:href="@{/styles/relations/relations.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/relations/relations-page.js}" defer="defer"></script>
+
+    <div class="page-name" id='relations-page'></div>
+
+    <div class="container-fluid">
+        <div class="page-name" id='relations-page'></div>
+        <!-- START BREADCRUMB -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item active">Связи между источниками</li>
+        </ol>
+        <!-- END BREADCRUMB -->
+        <h4>Связи между источниками</h4>
+      <div th:replace="~{relations/_table :: item}"
+
+      ></div>
+    </div>
+</section>
+</body>
+</html>

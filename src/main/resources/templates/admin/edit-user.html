@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <title>Редактирование пользователя</title>
+</head>
+
+<body>
+  <section>
+    <div class="page-name" id='edit-user-page'></div>
+    <script th:src="@{/js/admin/edit-user.js}" defer="defer"></script>
+
+    <!-- Здесь передается id пользователя, если он подается на редактирование -->
+    <div id="user_id" th:if="${user_id!=null}" th:data-user_id="${user_id}"></div>
+
+    <div>
+      <div class="row">
+        <div class="col-lg-12" id="edit_user">
+          <form class="was-validated" action="/admin/" id='id_form_user_edit'>
+            <div class="edit-body">
+              <div class=" mb_panel with-shadow white-background" id="accordion">
+                <div>
+                  <h4>
+                    <th:block th:if="${user_id!=null}">Редактирование</th:block>
+                    <th:block th:if="${user_id==null}">Создание</th:block>
+                    пользователя
+                    <th:block th:if="${user_id!=null}" th:text="${user.username}"></th:block>
+                  </h4>
+                  <br>
+                </div>
+
+                <div class="form-group">
+                  <label for="username">Логин пользователя</label>
+                  <input type="text" name="username" id="id_username" class="form-control form-control-sm" required
+                    autocomplete="off">
+                  <div class="invalid-feedback">Введите Логин пользователя</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="first_name">Имя</label>
+                  <input type="text" name="first_name" id="id_first_name" class="form-control form-control-sm" required>
+                  <div class="invalid-feedback">Введите имя пользователя</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="last_name">Фамилия</label>
+                  <input type="text" name="last_name" id="id_last_name" class="form-control form-control-sm" required>
+                  <div class="invalid-feedback">Введите фамилию пользователя</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" name="email" id="id_email" class="form-control form-control-sm" required>
+                  <div class="invalid-feedback">Введите email пользователя</div>
+                </div>
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id=id_is_staff>
+                  <label class="custom-control-label" for="id_is_staff">
+                    Статус персонала
+                    <span>
+                      <i class='fas fa-question-circle icon green fa-lg' data-toggle="tooltip"
+                        title="Включите этот флажок, если вы хотите сделать пользователя администратором">
+                      </i>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id=id_is_superuser>
+                  <label class="custom-control-label" for="id_is_superuser">
+                    Супер пользователя
+                    <span>
+                      <i class='fas fa-question-circle icon green fa-lg' data-toggle="tooltip"
+                        title="Включите этот флажок, если вы хотите сделать пользователя администратором">
+                      </i>
+                    </span>
+                  </label>
+                </div>
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id=id_is_active>
+                  <label class="custom-control-label" for="id_is_active">
+                    Активный пользователь
+                    <span>
+                      <i class='fas fa-question-circle icon green fa-lg' data-toggle="tooltip"
+                        title="Если выключите этот флажок, пользователь не сможет войти в систему">
+                      </i>
+                    </span>
+                  </label>
+                </div>
+
+                  <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" id="id_password" onfocus="this.removeAttribute('readonly');"
+                      th:readonly="${user_id!=null}" class="form-control form-control-sm"
+                      placeholder="Введите пароль пользователя"
+                      required autocomplete="off" value=''>
+                    <div class="invalid-feedback">
+                      Введите пароль для подключения
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+            <div class="edit-footer-fixed center">
+              <button class="btn btn-outline-success btn-sm" type="button" id="id_button_save">
+                <i class="fa fa-save"></i>
+                Сохранить
+              </button>
+              <a href='/admin/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <title>Настройки соединений</title>
+</head>
+
+<body>
+  <section>
+    <link th:href="@{/styles/connects/connects.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/connects/connects-page.js}" defer="defer"></script>
+    <div class="container-fluid">
+      <div class="page-name" id='connects-page'></div>
+      <!-- START BREADCRUMB -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active">Настройки соединений</li>
+      </ol>
+      <!-- END BREADCRUMB -->
+      <h4>Настройки соединений</h4>
+      <div class="alert alert-danger bordered" th:if="${mart_con==null}">
+        <i class=" fas fa-exclamation-triangle"></i>
+        <strong>
+          Не настроено соединение с базой витрин данных!
+        </strong>
+        <a href='edit-mart-connection/'>
+          Создать настройку с базой витрин данных
+        </a>
+      </div>
+      <div class="alert alert-danger bordered" th:if="${data_con==null}">
+        <i class="fas fa-exclamation-triangle"></i>
+        <strong>
+          Не настроено соединение с хранилищем данных!
+        </strong>
+        <a href='/data-store/edit-data-connection'>
+          Создать настройку соединения с хранилищем данных
+        </a>
+      </div>
+      <br>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#marts">
+            <i class="fas fa-database"></i>
+            База с витринами данных
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#datas">
+            <i class="far fa-hdd"></i>
+            Хранилище данных
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="marts" class="tab-pane container active">
+          <div th:insert="~{connects/marts/_mart_connection :: item}"></div>
+        </div>
+        <div id="datas" class="tab-pane container fade"><br>
+          <div th:insert="~{connects/datas/_data_connection :: item}"></div>
+        </div>
+      </div>
+      <!--    {% endif %}-->
+    </div>
+  </section>
+</body>
+
+</html>

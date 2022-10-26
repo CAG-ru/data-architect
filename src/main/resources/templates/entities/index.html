@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+    <title>Сущности</title>
+</head>
+
+<body>
+    <section>
+        <div class="page-name" id='entities-page'></div>
+        <link th:href="@{/styles/entity/entities.css}" rel="stylesheet" type="text/css" />
+        <script th:src="@{/js/entities/entities-page.js}" defer="defer"></script>
+        <div class="container-fluid">
+            <!-- START BREADCRUMB -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item active">Сущности</li>
+            </ol>
+            <!-- END BREADCRUMB -->
+
+            <h4>Сущности</h4>
+               <div th:replace="~{entities/_table :: item}"></div>
+        </div>
+
+
+        <div class="modal fade" id="id_acception_detete_entity">
+            <div id="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Подтверждение удаления сущности</h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                        Вы уверены, что хотите удалить сущность '<span id="entity_name"></span>'?
+                        <div class="jumbotron">
+                            <p class="small">
+                                * Если ранее для этой сущности были созданы
+                                и еще не удалены витрины,
+                                то сущность удалена не будет.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+                            id="id_accept_button">
+                            Да
+                        </button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

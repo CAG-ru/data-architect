@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <title>Data Architect – создание витрин данных | Главная</title>
+</head>
+
+<body>
+  <section>
+    <link th:href="@{/styles/home/home.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{/js/home/home-page.js}" defer="defer"></script>
+
+    <div class="page-name" id='home-page'></div>
+    <div th:replace="~{home/index_panel :: item}"></div>
+    <!-- <div th:replace="~{home/_index_stat :: item}"></div> -->
+  </section>
+</body>
+
+</html>

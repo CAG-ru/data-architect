@@ -1,0 +1,26 @@
+<!-- Parent template -->
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Просмотр сущности{% endblock %}
+
+{% block content %}
+<script src="{% static 'js/entities/entities-page.js' %}" defer="defer"></script>
+<div class="container">
+    <!-- START BREADCRUMB -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item"><a href="/entities/">Сущности</a></li>
+        <li class="breadcrumb-item active">Просмотр сущности</li>
+    </ol>
+    <!-- END BREADCRUMB -->
+
+  <div class="page-name" id='entities-page'></div>
+
+  <a href='/entities/' class="btn btn-outline-danger btn-sm" role="button">Назад</a>
+  <br><br>
+  <h3>Просмотр сущности '{{ entity.name}}'</h3>
+  <br>
+</div>
+{% endblock %}

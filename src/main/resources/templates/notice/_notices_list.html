@@ -1,0 +1,48 @@
+<div class='mb_panel with-shadow white-background' th:fragment="item">
+  <h3>Уведомления</h3>
+
+
+  <table class="table table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <!-- <th class='left'>№</th> -->
+        <th class='left'>Создано</th>
+        <th class='left'>Тип</th>
+        <th class='left'>Текст</th>
+        <th class='left'>Показано</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="notice,iter : ${notices}">
+        <!-- <td th:utext="${iter.index+1}"> -->
+        <td th:utext="${#calendars.format(notice.getCreated(),'dd MMMM yyyy HH:mm:ss')}"></td>
+        <td th:utext="${notice.getKind()}"></td>
+        <td th:utext="${notice.getMessage()}"></td>
+        <td>
+          <i th:class="${notice.getIsViewed()? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off text-danger'}"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <div class="pagination" th:if="${notices.getTotalPages()>1}">
+    <span class="step-links">
+      <span class="current">
+        Страница <th:block th:text="${notices.getNumber()+1}"></th:block> из <th:block
+          th:text="${notices.getTotalPages()}"></th:block>.
+      </span>
+
+      <th:block th:if="${notices.hasPrevious()}">
+        <a href="?page=1">&laquo; первая</a>
+        <a th:href="${'?page='+(notices.previousOrFirstPageable().getPageNumber()+1)}">предыдущая</a>
+      </th:block>
+
+      <th:block th:if="${notices.hasNext()}">
+        <a th:href="${'?page='+(notices.nextOrLastPageable().getPageNumber()+1)}">следующая</a>
+        <a th:href="${'?page='+notices.getTotalPages()}">последняя &raquo;</a>
+      </th:block>
+    </span>
+  </div>
+
+</div>

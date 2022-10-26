@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+  <title>Аутентификация</title>
+</head>
+<body>
+<section>
+<div class="container">
+<div class="login_box">
+  <div class="login_title">
+    <h4>
+      Необходимо войти в систему
+    </h4>
+  </div>
+  <div class='login_wrapper'>
+    <form method="post" action="/auth/login" class="was-validated">
+      <table class="table table-borderless">
+        <input name="username" required/>
+        <input name="password" required/>
+      </table>
+      <div class="login_submit">
+        <button type="submit" class="btn btn-outline-primary btn-sm btn-block">Вход</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</section>
+</body>

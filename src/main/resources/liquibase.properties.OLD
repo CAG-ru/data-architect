@@ -1,0 +1,4 @@
+username=postgres
+password=QWEasd
+url=jdbc:postgresql://localhost:5432/DataArchitect?serverTimezone=UTC
+changeLogFile=classpath:/db/changelog/master.xml

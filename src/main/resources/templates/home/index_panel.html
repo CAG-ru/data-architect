@@ -1,0 +1,206 @@
+<div th:fragment="item">
+  <div class="jumbotron" data-social="cover" data-dinsp="">
+    <!-- START BREADCRUMB -->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Data Architect</a></li>
+      <li class="breadcrumb-item active">Главная</li>
+    </ol>
+    <!-- END BREADCRUMB -->
+    <div class="cover-photo">
+      <div class=" container-fluid   container-fixed-lg ">
+        <div class="inner">
+          <div class="container-md-height m-b-20">
+            <div class="row m-lg-0">
+              <div class="col-xl-4 col-lg-4">
+                <!-- START card -->
+
+                <div class="full-height">
+                  <div class="card-body text-center">
+                    <img class="image-responsive-height demo-mw-500" th:src="@{/img/logo-text.svg}" alt="">
+                  </div>
+                </div>
+                <!-- END card -->
+              </div>
+              <div class="col-xl-8 col-lg-8">
+                <!-- START card -->
+                <div class="card card-transparent">
+                  <div class="card-header ">
+                    <div class="card-title">
+                      <h3>
+                        О приложении
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="">Data Architect – мощный инструмент для самостоятельного создания витрин
+                      данных.
+                    </h3>
+                    <h5 class="">Простой веб-интерфейс</h5>
+                    <div>Вы сможете создать ваши первые рабочие «витрины» в первый же день знакомства с системой</div>
+                    <ul>
+                      <li>Самостоятельно создавайте витрину из предоставленных наборов данных</li>
+                      <li>Вам больше не нужно ждать создания витрины специалистами ИТ</li>
+                      <li>Подключайтесь к любой готовой витрине</li>
+                    </ul>
+                    <h5 class="">Автоматизация</h5>
+                    <ul>
+                      <li>После выбора необходимых параметров для создания витрины, процесс идет автоматически</li>
+                      <li>Вам придет оповещение о создании витрины и параметры подключения к ней</li>
+                      <li>Обновление витрин происходит также в автоматическом режиме при изменении исходных данных</li>
+                    </ul>
+                    <h5 class="">Экономия ресурсов</h5>
+                    <ul>
+                      <li>Если витрина больше не нужна – она может быть удалена или по истечении срока действия или по
+                        вашему желанию </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- END card -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- START CONTAINER FLUID -->
+  <div class=" container-fluid   container-fixed-lg">
+    <!-- START card -->
+    <div class="card card-transparent">
+      <div class="card-header">
+        <div class="card-title mb-4">
+          <h3>
+            Основные разделы приложения:
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card" id="card-personalarea">
+            <div class="card-header">
+              <div class="card-title">
+                <h3>
+                  <a href="/marts/">
+                    Витрины данных
+                  </a>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="mt-2 mb-2 mr-2" style="max-width:100px; max-height:100px;">
+                    <a href="/marts/">
+                      <img th:src="@{/img/icons/icon-sources.svg}" alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <p class="small hint-text">
+                    <!--<a href="/marts/">Мои витрины</a> | <a href="#">Избранное</a> | <a href="#">История</a>-->
+                  </p>
+                  <p>Создание новых витрин данных. Работа с витринами данных.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card" id="card-planning">
+            <div class="card-header">
+              <div class="card-title">
+                <h3>
+                  <a href="/sources/">
+                    Источники данных
+                  </a>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="mt-2 mb-2 mr-2" style="max-width:100px; max-height:100px;">
+                    <a href="/sources/">
+                      <img th:src="@{/img/icons/icon-db.svg}" alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <p class="small hint-text">
+                    <!--<a href="#">Ссылка 1</a> | <a href="#">Ссылка 2</a>-->
+                  </p>
+                  <p>Просмотр и редактирование метаданных для подключенных источников данных.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card" id="card-planning">
+            <div class="card-header">
+              <div class="card-title">
+                <h3>
+                  <a href="/relations/">
+                    Связи между источниками
+                  </a>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="mt-2 mb-2 mr-2" style="max-width:100px; max-height:100px;">
+                    <a href="/relations/">
+                      <img th:src="@{/img/icons/icon-table.svg}" alt="" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <p class="small hint-text">
+                    <!--<a href="#">Ссылка 1</a> | <a href="#">Ссылка 2</a>-->
+                  </p>
+                  <p>Создание и редактирование связей между источниками данных.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card" id="card-planning">
+            <div class="card-header">
+              <div class="card-title">
+                <h3>
+                  <a href="/connects/">
+                    Подключение к источникам данных
+                  </a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="mt-2 mb-2 mr-2" style="max-width:100px; max-height:100px;">
+                  <a href="/connects/">
+                    <img th:src="@{/img/icons/icon-connect.svg}" alt="" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <p class="small hint-text">
+                  <!--<a href="#">Ссылка 1</a> | <a href="#">Ссылка 2</a>-->
+                </p>
+                <p>Настройка соединений с источниками данных.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END card -->
+  <!-- </div> -->
+  <!-- END CONTAINER FLUID -->
+</div>

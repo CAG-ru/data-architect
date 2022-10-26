@@ -1,0 +1,7 @@
+{% extends "sources/file_schema_form/base_schema.html" %}
+{% load crispy_forms_tags %}
+
+{% block file-type %} xml {% endblock %}
+{% block form-groups %}
+    {% crispy xml_form %}
+{% endblock %}

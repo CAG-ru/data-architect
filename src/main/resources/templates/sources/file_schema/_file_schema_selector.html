@@ -1,0 +1,7 @@
+<select id="file_schemas" class="form-control form-control-sm select form-control">
+
+    {% for schema in file_schemas %}
+    <option value="{{ schema.id }}" {% if current_schema == schema.id %} selected {% endif %}>{{ schema.name }}</option>
+    {% endfor %}
+
+</select>

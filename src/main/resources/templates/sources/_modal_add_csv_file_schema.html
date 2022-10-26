@@ -1,0 +1,65 @@
+<!-- Modal Edit file schema -->
+<div class="modal fade" id="modal_add_csv_file_schema" role="dialog" th:fragment="item">
+  <div class="modal-dialog modal-xl">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Параметры CSV схемы {% block file-type %}{% endblock %}:</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          {% block common %}
+          <div class="form-group" id="common">
+            <div class="form-row first_row">
+              <div class="col-md-12 mb-3">
+                <input type="text" class="form-control form-control-sm" placeholder="Название" id="id_schema_name"
+                  required='required'>
+              </div>
+            </div>
+
+            <div class="form-row first_row">
+              <div class="col-md-12 mb-3">
+                <input type="text" class="form-control form-control-sm" placeholder="Описание"
+                  id="id_schema_description" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" aria-describedby="files_list_help">
+            <label for="files_list">Файл для формировования шаблона</label>
+            <select name="files_list" id="id_files_list"
+              class="form-control form-control-sm" placeholder="Выберите файл" required></select>
+                <small id="files_list_help" class="form-text text-muted">
+                  Выберите файл, на основе которого будет сформирован шаблон
+                </small>
+            <div class="invalid-feedback">Выберите файл</div>
+          </div>
+
+          <div id='id_table_data' class='scroll-x'>
+
+          </div>
+
+          {% endblock %}
+
+          {% block form-groups %}
+          {% endblock %}
+
+          <button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal"
+            id="id_modal_csv_file_schema_save" value='10'>Сохранить
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"
+            id="id_modal_csv_file_schema_close">
+            Закрыть
+          </button>
+          {% block delete-button %}
+          {% endblock %}
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

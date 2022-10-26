@@ -1,0 +1,186 @@
+<!-- шаблон для отображения при редактировании описания витрины данных -->
+<script type="jtk" id="tmplGroup">
+  <div style="width:${width}px;height:${height}px;">
+        <div class="group-title">
+            ${title}
+            <button class="expand"></button>
+        </div>
+        <div jsplumb-group-content="true"></div>
+    </div>
+</script>
+<!-- table node type -->
+<script type="jtk" id="tmplTable">
+  <div class="table node">
+        <input type="hidden" name="connect_id" value="${connect_id}"/>
+        <input type="hidden" name="schema" value="${schema}"/>
+        <input type="hidden" name="metadata_name" value="${metadata_name}"/>
+        <input type="hidden" name="metadata_id" value="${id}"/>
+        <div>
+            <r-if test="selected == false">
+                <div class="table_select" data-toggle="tooltip" title="">
+                    <i class="far fa-square"></i>
+                </div>
+                <r-else>
+                    <div class="table_select selected" data-toggle="tooltip" title="">
+                        <i class="fas fa-check-square text-succes"></i>
+                    </div>
+            </r-if>
+            <div class="table-data-info">
+                <i class="far fa-eye" data-toggle="tooltip" title="Посмотреть содержимое таблицы"></i>
+            </div>
+            <div class="table-filter-info">
+                <i class="fas fa-filter" data-toggle="tooltip" title="Посмотреть фильтры для таблицы"></i>
+            </div>
+        </div>
+        <div class="name" data-toggle="tooltip" title="${table_name} ${description}">
+            <div>
+                ${name}
+            </div>
+            <span>
+                <!-- Таблица  -->
+                <i>
+                    ${table_name.length<25 ? table_name : (table_name.slice(0,25)+'...')}
+                </i>
+            </span>
+        </div>
+        <div class="table-columns">
+            <r-each in="columns" key="id">
+                <r-tmpl id="tmplColumn"/>
+            </r-each>
+        </div>
+    </div>
+</script>
+
+<!-- view node type -->
+<script type="jtk" id="tmplView">
+  <div class="view node">
+        <div class="name">
+            <div class="view-delete delete" title="Click to delete"/>
+            <span>${id} (${name})</span>
+            <div class="buttons">
+                <div class="edit-name" title="Click to edit view name">
+                    <i class="fa fa-pencil-square"/>
+                </div>
+            </div>
+        </div>
+        <div class="view-edit" title="Click to edit view query">
+            <i class="fa fa-pencil-square"/>
+        </div>
+        <div class="view-details">${query}</div>
+    </div>
+</script>
+
+<!-- table column template -->
+<script type="jtk" id="tmplColumn">
+  <div class="table-column table-column-type-${datatype}" primary-key="${primaryKey}" data-port-id="${id}">
+        <span>
+        <r-if test="selected == false">
+            <div class="table-column-select" data-toggle="tooltip" title="">
+                <i class="far fa-square table-column-select-icon"></i>
+            </div>
+            <r-else>
+                <div class="table-column-select selected" data-toggle="tooltip" title="">
+                    <i class="fas fa-check-square text-succes table-column-select-icon"></i>
+                </div>
+        </r-if>
+        </span>
+        <div data-toggle="tooltip" title="${description}">
+            <div>
+                ${name}
+            </div>
+            <div>
+                <i>
+                    ${comment}
+                </i>
+            </div>
+        </div>
+        <!--
+            configure the li as an edge source, with a type of column, a scope derived from
+            the columns datatype, and a filter that prevents dragging new edges from the delete button or from the label.
+        -->
+        <!-- ------------------------ -->
+        <!-- Сюда в фильтры надо поставить те классы, которые необходмо, чтобы орабатывались события -->
+        <jtk-source port-id="${id}" scope="${datatype}" filter=".table-column-select, .table-column-select-icon, span" filter-exclude="true"/>
+
+        <!--
+            configure the li as an edge target, with a type of column, and a scope derived from the
+            column's datatype.
+        -->
+        <jtk-target port-id="${id}" scope="${datatype}"/>
+    </div>
+</script>
+
+<!-- edit relationship -->
+<script type="jtk" class="dlg" id="dlgRelationshipType" title="Редактирование связи">
+  <div class="db-cardinality">
+        <ul>
+            <li>
+                <label>
+                    <input type="radio" name="rType" value="Manual" jtk-focus jtk-att="type" checked/>
+                    Ручная связь
+                </label>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<!-- edit column type and key details -->
+<script type="jtk" class="dlg" id="dlgColumnEdit" title="Edit Column">
+  <div class="db-column-type">
+        <label>
+            <div class="form-labels-float">name:</div>
+            <div class="pull-left"><input class="" jtk-att="name" jtk-focus jtk-commit="true"/></div>
+            <div class="clearfix"/>
+        </label>
+
+        <div class="checkbox-id">
+            <label>
+                <input type="checkbox" class="chkPrimaryKey" jtk-att="primaryKey"/>
+                Primary Key
+            </label>
+        </div>
+
+        <p>
+            <div class="form-labels">Type:</div>
+            <div class="clearfix"></div>
+            <ul>
+                <li>
+                    <label>
+                        <input type="radio" name="cType" value="integer" jtk-focus jtk-att="datatype"/>
+                        Integer
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="cType" value="varchar" jtk-att="datatype" checked/>
+                        Varchar
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="cType" value="date" jtk-att="datatype"/>
+                        Date
+                    </label>
+                </li>
+            </ul>
+        </p>
+    </div>
+</script>
+
+<!-- edit view query -->
+<script type="jtk" class="dlg" id="dlgViewQuery" title="Edit Query">
+  <textarea class="txtViewQuery" jtk-focus jtk-att="query" jtk-commit="true"/>
+</script>
+
+<!-- edit name (table or view) -->
+<script type="jtk" class="dlg" id="dlgName" title="Enter Name">
+  <input type="text" size="50" jtk-focus jtk-att="name" jtk-commit="true"/>
+</script>
+
+<script type="jtk" class="dlg" id="dlgConfirm" title="Please Confirm">
+  ${msg}?
+</script>
+
+<script type="jtk" class="dlg" id="dlgMessage" title="Message" cancel="false">
+  ${msg}
+</script>

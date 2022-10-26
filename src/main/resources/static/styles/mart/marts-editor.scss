@@ -1,0 +1,443 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/* --- Node common -------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+
+.jtk-surface .table,
+.view {
+    /*background-color: #3E7E9C;*/
+    background-color: #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    position: absolute;
+    z-index: 11;
+    overflow: hidden;
+    min-width: 80px;
+    min-height: 30px;
+    width: auto;
+    border: 1px solid #ccc;
+    flex-direction: column;
+}
+
+.table .name,
+.view .name,
+.table .jtk-draggable,
+.view .jtk-draggable {
+    background-color: #3E7E9C;
+    color: #f7ebca;
+    cursor: move;
+    font-size: 14px;
+    padding: 6px;
+    align-items: center;
+}
+
+
+.table .jtk-draggable,
+.view .jtk-draggable {
+    min-width: 100px;
+    border-radius: 14px;
+}
+
+.table .name span,
+.view .name span {
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table .name .buttons,
+.view .name .buttons {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --- Table nodes -------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+
+
+.jtk-surface .table {
+    margin-bottom: 0;
+    min-width: 200px;
+    align-items: stretch;
+}
+
+.table-columns {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    position: relative;
+}
+
+.table-column {
+    /* padding: 4px 16px; */
+    padding: 4px 4px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #555;
+}
+
+
+.table-column-delete,
+.view-delete {
+    color: #407364;
+    padding: 2px;
+    cursor: pointer;
+    position: static;
+    font-size: 10px;
+}
+
+
+.table-column-edit {
+    color: #407364;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.new-column,
+.delete,
+.table-column-delete {
+    -webkit-transition: background-color 0.15s ease-in;
+    -moz-transition: background-color 0.15s ease-in;
+    -o-transition: background-color 0.15s ease-in;
+    transition: background-color 0.15s ease-in;
+}
+
+.edit-name {
+    margin-right: 7px;
+}
+
+.new-column:hover,
+.delete:hover,
+.edit-name:hover {
+    color: #ff8000;
+}
+
+.table-column-delete:hover {
+    color: #434343;
+}
+
+.table-column-type-varchar {
+    background-color: #cbeae1;
+}
+
+.table-column-type-integer {
+    background-color: #cbe6de;
+}
+
+.table-column-type-date {
+    background-color: #e5f5f0;
+}
+
+.table-column[primary-key='true'] {
+    background-color: #83b8a8;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --- View nodes -------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+
+.view {
+    margin-bottom: 0;
+    width: 200px;
+    overflow: hidden;
+    background-color: white;
+    align-items: stretch;
+}
+
+.view-details {
+    font-size: 10px;
+    font-family: Courier, sans-serif;
+    padding: 10px;
+    min-height: 50px;
+}
+
+.view .view-delete {
+    color: #f7ebca;
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.view .view-delete:hover,
+.view .view-edit:hover {
+    color: #ff8000;
+}
+
+.view-edit {
+    position: absolute;
+    right: 7px;
+    top: 39px;
+}
+
+.txtViewQuery {
+    width: 272px;
+    height: 132px;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* --- Drag/drop interactions ------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+.drop-hover {
+    background-color: #629f72 !important;
+    color: #FFF !important;
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --- Edge styles ------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+
+.delete-relationship {
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.delete-relationship:hover {
+    color: #FFF;
+    background-color: #434343;
+    padding: 4px;
+}
+.blank-edge path {
+    stroke-width: 8;
+    stroke: #ec1b25;
+
+}
+.blank-edge.jtk-hover path {
+    stroke: #7e1414;
+}
+
+.common-edge path {
+    stroke-width: 3;
+    stroke: #0000ff;
+}
+
+.common-edge.jtk-hover path {
+    stroke: #434343;
+}
+
+.common-edge-fkey path {
+    stroke-width: 3;
+    stroke: #006600;
+}
+
+.common-edge-fkey.jtk-hover path {
+    stroke: #434343;
+}
+
+.common-edge-manual path {
+    stroke-width: 3;
+    stroke: #000066;
+}
+
+.common-edge-manual.jtk-hover path {
+    stroke: #434343;
+}
+
+.common-edge-auto path {
+    stroke-width: 3;
+    stroke: #990000;
+}
+
+.common-edge-auto.jtk-hover path {
+    stroke: #434343;
+}
+
+
+/* ----------------------------------------------------------------------------------------------------- */
+/* --- dialogs ------------------------- */
+/* ----------------------------------------------------------------------------------------------------- */
+
+.form-labels-float {
+    float: left;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 6px;
+    padding-top: 6px;
+    font-size: 14px;
+}
+
+.form-labels {
+    font-weight: bold;
+    text-align: left;
+    padding-right: 6px;
+    font-size: 14px;
+}
+
+.checkbox-id {
+    margin-top: 6px;
+    margin-left: 22px;
+}
+
+.btn-icon-margin {
+    line-height: 18px;
+    margin-left: 10px;
+}
+
+
+.pull-left {
+    float: left;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.jtk-demo-canvas {
+    min-height: 80vh;
+}
+
+.table-filter-info {
+    cursor: pointer;
+    padding: 5px 10px;
+    /* background: #111; */
+    /* border-radius: 50%; */
+    display: inline-block;
+    float: right;
+    margin: 0px 0px 0px 5px;
+}
+
+.readonly-visible[readonly] {
+    color: #000;
+    outline: none;
+}
+
+.table-data-info {
+    cursor: pointer;
+    padding: 5px 10px;
+    /* background: #111; */
+    /* border-radius: 50%; */
+    display: inline-block;
+    float: right;
+    margin: 0px 0px 0px 5px;
+}
+
+.table_select {
+    cursor: pointer;
+    padding: 2px 6px;
+    /* background: transparent; */
+    color: black;
+    /* font-size: 24px; */
+    /* border-radius: 50%; */
+    display: inline-block;
+    float: left;
+    margin: 0px 0px 0px 5px;
+}
+.table_select.selected {
+    background: green;
+    color: yellow;
+    border-radius: 50%;
+}
+
+.table-column-select {
+    color: #407364;
+    padding: 2px 6px;
+    cursor: pointer;
+    position:static;
+    /* font-size: 10px; */
+}
+.table-column-select.selected {
+    background: green;
+    color: white;
+    border-radius: 50%;
+}
+
+.btn-close-table-data-content {
+    text-align: right;
+    float: right;
+    margin: 5px 5px;
+    background: #ccc;
+}
+
+#table-data-content {
+    display: none;
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    right: 10px;
+    height: 600px;
+    background: #eee;
+    z-index: 999;
+    padding: 20px 20px;
+    box-shadow: 0px 0px 10px #555;
+}
+
+#table-data-content .tab-content {
+    overflow: scroll;
+}
+
+#table-data-content .tab-content table tr td {
+    background: #fff;
+}
+
+.main_body {
+    margin-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.controls {
+    top: 90px;
+    /* color: #FFF; */
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    left: 30px;
+    z-index: 1;
+    display: flex;
+    font-size: 14px;
+    width: 400px;
+    background: rgba(200,200,200,0.5);
+    padding: 15px 5px 0px 10px;
+}
+
+.controls i {
+    background-color: white;
+    color: #5184a0;
+    /* background-color: transparent; */
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 2px;
+    margin-right: 2px;
+    vertical-align: middle;
+    text-align: center;
+    /* border: 1px solid white; */
+    border: 1px solid black;
+    font-size: 24px;
+    font-style: normal;
+    width: 31px;
+    height: 31px;
+    padding: 2px;
+}
+
+.controls i:not(.selected-mode):hover {
+    color: white;
+    background-color: #5184a0;
+    /* background-color: white;
+    color: #5184a0; */
+    border: 1px solid #5184a0;
+}
+
+.controls i:not(.selected-mode):active {
+    color: white;
+    background-color: #1d9ea0;
+    border: 1px solid white;
+}
+
+.modal-90 {
+    width: 90%;
+    max-width: 90%;
+}
+
+#content_MartMetadataData {
+    overflow: auto;
+}
+
+.ui-autocomplete {
+    z-index: 10000;
+    max-height: 400px;
+    overflow-y: auto;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Справочники</title>
+</head>
+<body>
+<section>
+    <div class="page-name" id='handbooks-page'></div>
+    <link th:href="@{/plugins/footable/css/footable.bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/styles/handbooks/handbooks.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/plugins/footable/js/footable.js}" type="text/javascript"></script>
+    <script th:src="@{/js/handbooks/handbooks-page.js}" defer="defer"></script>
+
+
+    <div class="container-fluid">
+        <!-- START BREADCRUMB -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item active">Справочники</li>
+        </ol>
+        <!-- END BREADCRUMB -->
+
+        <h4>Справочники</h4>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#type_of_data_source_tab">
+                    Вид источника данных
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#relations_datas_tab">
+                    Отношение к ЖЦ данных
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#license_tab">
+                    Лицензия / условия использования
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#set_categories_tab">
+                    Категории набора
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#aggregation_level_tab">
+                    Уровень агрегации
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#handbooks_and_classifiers_tab">
+                    Справочники и классификаторы
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tags_tab">
+                    Тэги
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#logical_types_tab">
+                    Логические типы данных
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="type_of_data_source_tab" class="tab-pane container active"></div>
+            <div id="relations_datas_tab" class="tab-pane container fade"></div>
+            <div id="license_tab" class="tab-pane container fade"></div>
+            <div id="set_categories_tab" class="tab-pane container fade"></div>
+            <div id="aggregation_level_tab" class="tab-pane container fade"></div>
+            <div id="handbooks_and_classifiers_tab" class="tab-pane container fade"></div>
+            <div id="tags_tab" class="tab-pane container fade"></div>
+            <div id="logical_types_tab" class="tab-pane container fade"></div>
+        </div>
+
+
+    </div>
+</section>
+</body>
+</html>

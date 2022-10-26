@@ -1,0 +1,31 @@
+{
+  // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+  // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+  // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch DataArchitectApplication",
+      "request": "launch",
+      "mainClass": "pro.ach.data_architect.DataArchitectApplication",
+      "projectName": "data-architect"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DataArchitectApplication<data_architect>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "pro.ach.data_architect.DataArchitectApplication",
+      "projectName": "data_architect",
+      "args": ""
+    }
+  ]
+}

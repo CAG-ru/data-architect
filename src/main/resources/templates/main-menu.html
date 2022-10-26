@@ -1,0 +1,121 @@
+<ul class="side-menu" th:fragment="menu">
+  <li>
+    <img th:src="@{/img/logo.svg}" alt="logo" class="logo" th:data-src="@{/img/logo.svg}"
+      th:data-src-retina="@{/img/logo.svg}" ></a>
+  </li>
+  <li data-page-name="home-page">
+    <a href="/">
+      <!-- <span <img th:src="@{/img/logo-text.svg}" alt="logo"></span> -->
+      <span class="fas fa-home fa-lg side-menu-icon"></span>
+      <span>
+        Главная
+      </span>
+    </a>
+  </li>
+
+  <li data-page-name="marts-page">
+    <a href="/marts/">
+      <span class="fas fa-table fa-lg side-menu-icon"></span>
+      <span>
+        Витрины данных
+      </span>
+    </a>
+  </li>
+
+  <li data-page-name="entities-page">
+    <a href="/entities/">
+      <span class="fas fa-lightbulb fa-lg side-menu-icon"></span>
+      <span>
+        Сущности
+      </span>
+    </a>
+  </li>
+
+  <li data-page-name="relations-page">
+    <a href="/relations/">
+      <span class="fas fa-link fa-lg side-menu-icon"></span>
+      <span>
+        Связи между источниками
+      </span>
+    </a>
+  </li>
+
+  <li data-page-name="sources-page">
+    <a href="/sources/">
+      <span class="fas fa-database fa-lg side-menu-icon"></span>
+      <span>
+        Соединения с источниками
+      </span>
+    </a>
+  </li>
+
+  <!-- <li data-page-name="home-page">
+    <a href="/wiki/">
+      <span>
+        Wiki-описание
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/wiki/">
+        <i class="fab fa-wikipedia-w"></i>
+      </a>
+    </span>
+  </li> -->
+
+  <li data-page-name="connects-page">
+    <a href="/connects/">
+      <span class="fas fa-network-wired fa-lg side-menu-icon"></span>
+      <span>
+        Настройки соединений
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+  </li>
+
+  <li data-page-name="handbooks-page">
+    <a href="/handbooks/">
+      <span class="fas fa-list-ul fa-lg side-menu-icon"></span>
+      <span>
+        Справочники
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+  </li>
+
+  <li data-page-name="notice-page">
+    <a href="/notice/">
+      <span class="far fa-comment-dots fa-lg side-menu-icon"></span>
+      <span>
+        Уведомления
+      </span>
+    </a>
+  </li>
+
+
+  <!-- <li data-page-name="home-page"> <a href="/admin/"><span>Администрирование</span></a><span class="icon-thumbnail"><a
+        href="/admin/"><i class="icon-cog"></i></a></span></li>
+
+  </li> -->
+
+  <li data-page-name="admin-page">
+    <a href="/admin/">
+      <span class="fas fa-users-cog fa-lg side-menu-icon"></span>
+      <span>
+        Администрирование
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a href="/logout">
+      <span class="fas fa-sign-out-alt fa-lg side-menu-icon"></span>
+      <span>
+        Выйти
+      </span>
+    </a>
+  </li>
+
+</ul>
+
+
+<!-- <div class="clearfix"></div> -->

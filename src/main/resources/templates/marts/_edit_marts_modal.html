@@ -1,0 +1,274 @@
+<!-- Modal Edit text -->
+<div th:fragment="item">
+<div class="modal fade" id="modal_edit_mart" role="dialog" >
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Параметры витрины:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="was-validated">
+                    <div class="form-group">
+                        <label for="mart_name">Название витрины:</label>
+                        <input type="text" class="form-control" id="mart_name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label>Описание витрины:</label>
+                        <textarea class="form-control contenteditable contenteditable-textarea" contenteditable="true"
+                            cols="80" id="mart_description" name="modal_edit_mart_textarea" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mart_dest_table">Название таблицы для витрины:</label>
+                        <input type="text" class="form-control" id="mart_dest_table" required aria-required="true">
+                    </div>
+                    <div class="form-group" aria-describedby="source_data_rows_limit_help">
+                        <label >
+                            Ограничение по количеству строк:
+                        </label>
+                        <select class="form-control form-control-sm" name='source_data_rows_limit'
+                            id="id_source_data_rows_limit" required>
+                            <option value="10">10</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                            <option value="-1">Все</option>
+                        </select>
+                        <small id="source_data_rows_limit_help" class="form-text text-muted">
+                            Укажите число строк, которые нужно выбрать из таблиц
+                        </small>
+                    </div>
+                    <div class="custom-control custom-switch" aria-describedby="mart_for_check_guality_help" hidden>
+                        <input type="checkbox" class="custom-control-input" id="id_mart_for_check_guality" value="">
+                        <label class="custom-control-label" for='id_mart_for_check_guality'>
+                            Витрина для проверки качества
+                        </label>
+                        <small id="mart_for_check_guality_help" class="form-text text-muted">
+                            Если указать, что витрина создается для проверки качества, то она будет создана в специальной схеме для проверки качества данных и в нее будут добавлены контрольные колонки
+                        </small>
+                    </div>
+                    <div class="custom-control custom-switch" aria-describedby="mart_permanent_help">
+                        <input type="checkbox" class="custom-control-input" id="id_mart_permanent" value="">
+                        <label class="custom-control-label" for='id_mart_permanent'>
+                            Постоянная витрина
+                        </label>
+                        <small id="mart_permanent_help" class="form-text text-muted">
+                            Постоянная витрина может быть использована на постоянной основе другим программын обеспечением
+                        </small>
+                    </div>
+                    <div class="form-group" aria-describedby="mart_due_date_help">
+                        <label for="id_mart_due_date">
+                            Дата действия витрины:
+                        </label>
+                        <input type="date" class="form-control" id="id_mart_due_date" value="">
+                        <small id="mart_due_date_help" class="form-text text-muted">
+                            Укажите срок жизни витрины. При наступлении этого срока витрина может быть предложена на удаление.
+                        </small>
+                    </div>
+
+                    <!-- <div class="modal-footer"> -->
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal" id="modal_edit_mart_save">
+                        Сохранить
+                    </button>
+                    <!--<button type="submit" class="btn btn-outline-success btn-sm" data-dismiss="modal"
+                        id="modal_edit_mart_save">Сохранить</button>-->
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">
+                        Закрыть
+                    </button>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- The Modal List Mart Filters -->
+<div class="modal" id="modal_listMartFilters">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title_listMartFilters">Список фильтров для витрины</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="listMartMetadataFilters"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-outline-success float-left" id="add_MetadataColumnFilter">Добавить</button>
+                </div>
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-outline-info float-right" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- The Modal edit Mart Filter -->
+<div class="modal" id="modal_editMartFilter">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="modal-title">Фильтр для метаданного</h4>
+                    <h4 class="modal-title" id="edit_metadata_filter_metadata_name_text"></h4>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+    <form class="was-validated" id="modal_FormEditMartFilter">
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <!-- НЕ УДАЛЯТЬ !!!-->
+                        <input type="hidden" class="form-control readonly-visible" id="edit_metadata_filter_connect_id" required value="" readonly="readonly" aria-required="true" />
+                        <input type="hidden" class="form-control readonly-visible" id="edit_metadata_filter_id" required value="" readonly="readonly" aria-required="true" />
+                        <input type="hidden" class="form-control readonly-visible" id="edit_metadata_filter_schema" required value="" readonly="readonly" aria-required="true" />
+                        <input type="hidden" class="form-control readonly-visible" id="edit_metadata_filter_metadata_name" required value="" readonly="readonly" aria-required="true" />
+                        <input type="hidden" class="form-control readonly-visible" id="edit_metadata_filter_metadata_id" required value="" readonly="readonly" aria-required="true" />
+                        <!--<label>Источник:</label>
+                        <span id="edit_metadata_filter_connect_id_name"></span>
+                        <br/>
+                        <label>Схема:</label>
+                        <span id="edit_metadata_filter_schema"></span>
+                        <br/>
+                        <label>Метаданное:</label>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Столбец:</label>
+                        <select class="form-control" id="edit_metadata_filter_column_name" required aria-required="true">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Условие для фильтрации:</label>
+                        <select class="form-control" id="edit_metadata_filter_condition_type" required aria-required="true">
+                            <option value="=">= (равно)</option>
+                            <option value="!=">!= (не равно)</option>
+                            <option value=">">> (больше)</option>
+                            <option value=">=">>= (больше или равно)</option>
+                            <option value="<">< (меньше)</option>
+                            <option value="<="><= (меньше или равно)</option>
+                            <!--<option value="><">диапазон "от и до"</option>
+                            <option value="=><=">диапазон "от и до" (включительно)</option>-->
+                        </select>
+                    </div>
+                    <div class="form-group" id="mart-filter-values-block">
+                        <label>Значение:</label>
+                        <!--<label>Значения (одно или несколько):</label>-->
+                        <input type="text" name="edit_metadata_filter_condition_values[]" value=""
+                         class="ui-autocomplete-input form-control" autocomplete="off"
+                        required aria-required="true">
+                        <!--<button class="btn btn-outline-info btn-sm float-right">Еще значение</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="mart-filter-min-max-block">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Минимальное значение (от):</label>
+                        <input type="text" value="" class="form-control" id="edit_metadata_filter_condition_min">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Максимальное значение (до):</label>
+                        <input type="text" value="" class="form-control" id="edit_metadata_filter_condition_max">
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <button type="button" class="btn btn-outline-info" id="btn_viewMetadataData">Просмотр данных</button>
+                    <br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Отменить</button>-->
+                    <button type="button" class="btn btn-outline-danger float-left" data-tooltip="Удаляет фильтр для столбца" id="btn_deleteMartFilter">Удалить</button>
+                    <button type="button" class="btn btn-outline-success float-right" id="btn_saveMartFilter">Сохранить</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- The Modal Show Data for Metadata -->
+<div class="modal" id="modal_MartMetadataData">
+  <div class="modal-dialog modal-90">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Просмотр содержимого метаданного</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+            <div id="content_MartMetadataData">Загрузка содержимого метаданного ...</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="button" class="btn btn-outline-info float-right" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

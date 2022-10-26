@@ -1,0 +1,1 @@
+java -jar -Xms256m -Xmx1024m data-architect-2.0.jar

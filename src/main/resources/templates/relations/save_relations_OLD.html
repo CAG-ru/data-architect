@@ -1,0 +1,78 @@
+<!-- Parent template -->
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load sass_tags %}
+
+{% block title %}Редактирование связей между источниками данных{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<link href="{% static '/plugins/jsPlumbToolkit/css/jsplumbtoolkit.css' %}" rel="stylesheet" type="text/css" />
+<!--<link href="{% static 'css/relations/relations-editor-prefix.css' %}" rel="stylesheet" type="text/css" />-->
+<link href="{% sass_src 'css/relations/relations-editor.scss' %}" rel="stylesheet" type="text/css" />
+
+        <input type="hidden" id="cid" value="{{cid}}">
+        <!-- content -->
+        <script type="text/x-jtk-templates" src="/static/templates/rel/templates.html"></script>
+
+        <div class="jtk-demo-main" id="jtk-demo-dbase">
+
+                <div class="controls">
+                    <i class="fa fa-arrows selected-mode" mode="pan" title="Pan Mode"></i>
+                    <i class="fa fa-save" save title="Сохранить"></i>
+                    <i class="fa fa-home" reset title="Zoom To Fit"></i>
+                    <i class="fa fa-undo" undo title="Undo last action"></i>
+                    <i class="fa fa-repeat" redo title="Redo last action"></i>
+                </div>
+
+            <!-- this is the main drawing area -->
+            <div class="jtk-demo-canvas">
+                <!-- miniview -->
+                <div class="miniview"></div>
+            </div>
+            <div class="jtk-demo-rhs">
+                <!-- the node palette -->
+                {% comment %} <div class="sidebar node-palette">
+                    <div data-node-type="table" title="Drag to add new" class="sidebar-item"><i class="fa fa-table btn-icon-margin"></i>Table</div>
+                    <div data-node-type="view" title="Drag to add new" class="sidebar-item"><i class="fa fa-eye btn-icon-margin"></i>View</div>
+                </div> {% endcomment %}
+                {% comment %} <div class="description">
+                    <p>
+                        This is a visualizer for a database schema. Tables and views are supported, and
+                        you can drag relationships between columns in tables. The current state of the dataset is shown below.
+                    </p>
+                    <ul>
+                        <li>Drag new nodes from the palette onto the workspace to add nodes</li>
+                        <li>Click the + icon on any Table to add a Column</li>
+                        <li>Click a Table or View name to edit it</li>
+                        <li>Click the 'Pencil' icon in a column to edit it</li>
+                        <li>Click the 'Pencil' icon to enter 'select' mode, then select several nodes. Click the canvas to exit.</li>
+                        <li>Click the 'Home' icon to zoom out and see all the nodes.</li>
+                    </ul>
+                </div> {% endcomment %}
+
+                <!-- the current dataset -->
+                <div class="jtk-demo-dataset"></div>
+            </div>
+
+
+        </div>
+
+        <!-- /content -->
+
+        <!-- imports -->
+        <!-- /imports -->
+
+        <!-- demo -->
+        <!-- /demo -->
+        <div id="table-data-content">
+            <button class="btn-close-table-data-content" title="Закрыть окно">Х</button>
+            <div class="tab-content">
+                Загрузка содержимого таблицы ...
+            </div>
+        </div>
+
+        <script src="{% static '/plugins/jsPlumbToolkit/js/jsplumbtoolkit.js' %}"></script>
+        <script src="{% static 'js/relations/relations-editor.js' %}" defer="defer"></script>
+{% endblock %}

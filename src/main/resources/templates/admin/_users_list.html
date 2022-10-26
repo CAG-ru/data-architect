@@ -1,0 +1,68 @@
+      <div class='mb_panel with-shadow white-background' th:fragment="item">
+        <h3>Список пользователей</h3>
+        <a href='edit/?action=new' class="btn btn-outline-primary btn-sm" role="button">
+          <i class="fa fa-plus"></i> Создать пользователя
+        </a>
+        <table class="table table-hover table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th class='left'>№</th>
+              <th class='left'>Логин</th>
+              <th class='left'>Имя</th>
+              <th class='left'>Фамилия</th>
+              <th class='left'>email</th>
+              <th class='left'>Супердминистратор</th>
+              <th class='left'>Персонал</th>
+              <th class='left'>Активный</th>
+              <th class='left'>Дата регистрации</th>
+              <th class='left'>Последный вход</th>
+              <th class='left'></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="user,iter : ${users}">
+              <td th:utext="${iter.index+1}">
+              <td th:utext="${user.getUsername()}">
+              <td th:utext="${user.getFirstName()}">
+              <td th:utext="${user.getLastName()}">
+              <td th:utext="${user.getEmail()}">
+              <!-- <td th:utext="${user.getIsStaff()}"> -->
+                <!-- <td th:utext="${user.getIsActive()}"> -->
+              <td>
+                <i
+                  th:class="${user.getIsSuperuser()? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off
+                  text-danger'}"></i>
+              </td>
+              <td>
+                <i
+                  th:class="${user.getIsStaff()? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off
+                  text-danger'}"></i>
+              </td>
+              <td>
+                <i
+                  th:class="${user.getIsActive()? 'fas fa-toggle-on text-success' : 'fas fa-toggle-off text-danger'}"></i>
+              </td>
+              <td th:utext="${#calendars.format(user.getDateJoined(),'dd MMMM yyyy')}">
+              <td th:utext="${#calendars.format(user.getLastLogin(),'dd MMMM yyyy')}">
+              <td class='center'>
+                <div class="btn-group">
+                  <a class="btn btn-outline-primary btn-sm" role='button' th:href="${'/admin/edit/?cid='+user.getId()}"
+                    data-toggle="tooltip" title="Изменить пользователя">
+                    <i class='far fa-edit'></i>
+                  </a>
+
+                  <div class="dropdown-divider"></div>
+                  <a class="btn btn-outline-danger btn-sm" role='button' th:href="${'/admin/delete/'+user.getId() }"
+                    data-toggle="tooltip" title="Удалить пользователя"
+                    onclick="return confirm('Вы уверены, что хотите удалить пользователя?')">
+                    <i class='fas fa-trash-alt'></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div th:utext="${session.user}">
+
+        </div>
+      </div>

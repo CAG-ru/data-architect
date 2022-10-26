@@ -1,0 +1,11 @@
+{% load i18n %}{% autoescape off %}
+
+{% blocktrans with site.name as site %}Уведомление от Data Architect.{% endblocktrans %}
+{% for n in notifications %}
+ * {{ n.message }}
+{% endfor %}
+
+
+С уважением,
+Data Architect
+{% endautoescape %}

@@ -1,0 +1,148 @@
+<!-- Parent template -->
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% crispy edit_mart_form %}
+
+{% block title %}{% if mart_id %} Редактирование {% else %} Создание {% endif %} витрины данных{% endblock %}
+
+{% block content %}
+<div class="page-name" id='marts-page'></div>
+<link href="{% static 'css/marts/marts.css' %}" rel="stylesheet" type="text/css" />
+<script src="{% static '/plugins/ckeditor-markdown/ckeditor.js' %}" type="text/javascript"></script>
+<script src="{% static '/plugins/d3/js/d3.min.js' %}" defer="defer"></script>
+<script src="{% static 'js/marts/marts-page.js' %}" defer="defer"></script>
+
+{% if mart_id %}
+<!-- Здесь передается id витрины, если она подается на редактирование -->
+<div id="mart_id" mart_id="{{ mart_id }}"></div>
+{% endif %}
+<div>
+    <h4 class='center'>
+        {% if mart_id %}Редактирование{% else %}Создание{% endif %} витрины
+        данных{% if mart_name %}"{{mart_name}}"{% endif %}
+    </h4>
+    <div class="edit-body">
+        <div class=" mb_panel with-shadow white-background">
+
+            <div class="form-group row">
+                <label class="col-form-label col-lg-2" for="entity_select">
+                    Выбор сущности:
+                </label>
+                <div class='col-lg-8'>
+                    <select class="form-control form-control-sm" id="entity_select">
+                    </select>
+                </div>
+            </div>
+
+            <div class="view_diagram_scrollbar_top">
+                <div class="view_diagram_scrollbar_content"></div>
+            </div>
+            <div class='view_diagram'>
+                <div id="d3_diagram"></div>
+            </div>
+        </div>
+        <div class="edit-footer-fixed center">
+            <button type="button" class="btn btn-outline-success btn-sm" id="button_save">
+                <i class="fa fa-save"></i>
+                Сохранить
+            </button>
+            <a href='/marts/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">
+                Отмена
+            </a>
+        </div>
+    </div>
+
+</div>
+{% comment %}
+<!-- {% crispy form %} -->
+{% endcomment %}
+<input type="hidden" id="action" value="{{ action }}" />
+<!-- Modal Edit text -->
+<div class="modal fade" id="modal_edit_mart" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Параметры витрины:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="was-validated">
+                    <div class="form-group">
+                        <label for="mart_name">Название витрины:</label>
+                        <input type="text" class="form-control" id="mart_name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_mart_description">Описание витрины:</label>
+                        <textarea class="form-control contenteditable contenteditable-textarea" contenteditable="true"
+                            cols="80" id="mart_description" name="modal_edit_mart_textarea" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="mart_dest_table">Название таблицы для витрины:</label>
+                        <input type="text" class="form-control" id="mart_dest_table" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="source_data_rows_limit">Количество строк данных (взятых из источников):</label>
+                        <select class="form-control" id="source_data_rows_limit" required aria-required="true">
+                            <option value="10">10</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                            <option value="-1">Все</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" id="mart_permanent" value="">Постоянная
+                            витрина
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="mart_due_date">Дата действия витрины:</label>
+                        <input type="date" class="form-control" id="mart_due_date">
+                    </div>
+
+                    <!-- <div class="modal-footer"> -->
+                    <button type="submit" class="btn btn-outline-primary btn-sm"
+                        id="modal_edit_mart_save">Сохранить</button>
+                    <!-- <button type="submit" class="btn btn-outline-success btn-sm" data-dismiss="modal"
+                        id="modal_edit_mart_save">Сохранить</button> -->
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Закрыть</button>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Modal Edit text -->
+<div class="modal fade" id="modal_mart_dest_table" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ОШИБКА в названии таблицы для витрины:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="was-validated">
+                    <div class="form-group">
+                        <label for="mart_name">Название таблицы для витрины некорректно. <br>Допустимые символы:
+                            латинские буквы, цифры, знак подчеркивания.</label>
+                    </div>
+
+                    <!-- <div class="modal-footer"> -->
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal">Понятно</button>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "sources/file_schema_form/base_schema.html" %}
+{% load crispy_forms_tags %}
+
+{% block file-type %} xml {% endblock %}
+
+{% block common %}
+<div class="form-group" id="common">
+    <div class="form-row first_row">
+        <div class="col-md-12 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="Название" id="name" value="{{ name }}">
+        </div>
+    </div>
+
+    <div class="form-row first_row">
+        <div class="col-md-12 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="Описание" id="description" value="{{ description }}">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block form-groups %}
+    {% crispy xml_form %}
+    <input type="hidden" id="file_schema_id" value="{{ file_schema_id }}">
+{% endblock %}
+
+{% block delete-button %}
+    <button type="button" class="btn btn-outline-danger btn-sm float-right" data-dismiss="modal"
+        id="modal_file_schema_delete">
+        Удалить
+    </button>
+{% endblock %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Редактирование витрины данных</title>
+</head>
+<body>
+<section>
+    <div class="page-name" id='marts-page'></div>
+    <link th:href="@{/plugins/jsPlumbToolkit/css/jsplumbtoolkit.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/mart/marts-editor-prefix.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/mart/marts-editor.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/styles/mart/marts.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/plugins/ckeditor-markdown/ckeditor.js}" type="text/javascript"></script>
+    <script th:src="@{/plugins/footable/js/footable.js}" type="text/javascript"></script>
+    <script th:src="@{/plugins/jsPlumbToolkit/js/jsplumbtoolkit.js}"></script>
+    <script th:src="@{/js/marts/jsPlumbDiagram.js}" defer="defer"></script>
+    <script th:src="@{/js/marts/edit_marts_jsPlumb.js}" defer="defer"></script>
+
+
+    <input type="hidden" id="action" value="new"/>
+    <!-- Здесь передается id витрины, если она подается на редактирование -->
+    <input type="hidden" id="mart_id" th:value="${mart_id}"/>
+    <input type="hidden" id="mart_entity_id" th:if="${mart != null}" th:value="${mart.entity.id}"/>
+    <input type="hidden" id="selected_entity_id" th:value="${entity_id}"/>
+
+    <script type="text/x-jtk-templates" src="/templates/marts/templates_mart.html"></script>
+
+    <div class="container-fluid">
+        <!-- START BREADCRUMB -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item"><a href="/marts/">Витрины данных</a></li>
+            <li class="breadcrumb-item active">Редактирование витрины данных</li>
+        </ol>
+        <!-- END BREADCRUMB -->
+        <!-- <h3 class="center">{% if mart_id %}Редактирование{% else %}Создание{% endif %} витрины данных{% if mart_name %}
+            "{{mart_name}}" {% endif %}</h3> -->
+        <div>
+            <div class="form-group">
+                <label for="entity_select">Выбор сущности:</label>
+                <select class="form-control custom-select" id="entity_select" data-init-plugin='select2'
+                        style="width: 1000px; display: inline-block;">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- <div class="view_diagram_scrollbar_top">
+            <div class="view_diagram_scrollbar_content"></div>
+        </div>
+        <div class='view_diagram'>
+            <div id="d3_diagram"></div>
+        </div> -->
+        <div class="jtk-relations-editor-main" id="jtk-demo-dbase">
+            <h3 class="">Редактирование витрины данных</h3>
+
+            <div class="controls btn-group">
+                <div class="form-group" style="text-align:right;">
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="button_presave_mart">
+                        Сохранить
+                    </button>
+                    <a href='/marts/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+                    <button type="button" listfilters class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Смотреть список фильтров">
+                        <i class="fas fa-filter fa-lg"></i>
+                    </button>
+                    <button type="button" zoomtofit class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Вписать в экран">
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                    <button type="button" zoom-in class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Приблизить">
+                        <i class="fas fa-search-plus fa-lg"></i>
+                    </button>
+                    <button type="button" zoom-out class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Отдалить">
+                        <i class="fas fa-search-minus fa-lg"></i>
+                    </button>
+                    <button type="button" select-all class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Пометить все">
+                        <i class="fas fa-check-circle fa-lg"></i>
+                    </button>
+                    <button type="button" clear-all class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                        title="Очистить пометку со всех">
+                        <i class="fas fa-times-circle fa-lg"></i>
+                    </button>
+
+                </div>
+                <!-- <i class="fa fa-arrow-left" history_back title="Назад"></i> -->
+                
+                <!-- <i class="fas fa-filter  fa-lg" listfilters data-toggle="tooltip" title="Смотреть список фильтров"></i> -->
+                <!-- <i class="fas fa-search fa-lg" zoomtofit data-toggle="tooltip" title="Вписать в экран"></i> -->
+                <!-- <i class="fas fa-search-plus fa-lg" zoom-in data-toggle="tooltip" title="Приблизить"></i> -->
+                <!-- <i class="fas fa-search-minus fa-lg" zoom-out data-toggle="tooltip" title="Отдалить"></i> -->
+                <!-- <i class="far fa-check-circle fa-lg" select-all data-toggle="tooltip" title="Пометить все"></i>
+                <i class="far fa-times-circle fa-lg" clear-all data-toggle="tooltip" -->
+                    <!-- title="Очистить пометку со всех"></i> -->
+                <!-- <i class="fa fa-save" save title="Сохранить"></i> -->
+            </div>
+
+            <!-- this is the main drawing area -->
+            <div class="relations-editor-spinner"></div>
+            <!-- miniview -->
+            <div class="miniview"></div>
+            <div class="jtk-demo-canvas" id="jtk-canvas">
+            </div>
+
+        </div>
+        <br>
+        <!-- <div class="form-group" style="text-align:right;">
+            <button type="button" class="btn btn-outline-primary btn-sm" id="button_presave_mart"><i class="fa fa-save"></i>
+                Сохранить</button>
+            <a href='/marts/' class="btn btn-default btn-sm" role="button" id="button_cancel">Отмена</a>
+        </div> -->
+    </div>
+
+    <div th:replace="~{marts/_edit_marts_modal :: item}"></div>
+</section>
+</body>
+</html>

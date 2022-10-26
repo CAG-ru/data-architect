@@ -1,0 +1,52 @@
+.view_diagram {
+    height: 100%;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 1000px;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(204, 204, 204);
+    padding: 10px;
+}
+
+.btn-group-marts {
+    float: right;
+}
+
+.btn-group-marts a {
+    margin: 0px 10px;
+}
+
+/* .size24 {
+    font-size: 24px;
+}
+
+.size36 {
+    font-size: 36px;
+} */
+
+.view-mart-table-data {
+    overflow: auto;
+}
+
+.view_diagram_scrollbar_top {
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 20px;
+}
+
+.view_diagram_scrollbar_content {
+    height: 20px;
+}
+
+#th_date_create_table {
+    min-width: 200px;
+}
+
+#th_date_due_table {
+    min-width: 150px;
+}
+
+a.link-like-block {
+    display: block;
+}

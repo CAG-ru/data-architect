@@ -1,0 +1,216 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ach" id="create-users-table">
+    <createTable tableName="auth_user" schemaName="public">
+      <column name="id" type="int" autoIncrement="true" />
+      <column name="password" type="varchar(128)" />
+      <column name="is_superuser" type="boolean" />
+      <column name="username" type="varchar(150)" />
+      <column name="first_name" type="varchar(150)" />
+      <column name="last_name" type="varchar(150)" />
+      <column name="email" type="varchar(254)" />
+      <column name="is_staff" type="boolean" />
+      <column name="is_active" type="boolean" />
+      <column name="date_joined" type="timestamp" />
+      <column name="last_login" type="timestamp" />
+    </createTable>
+    <addPrimaryKey columnNames="id" constraintName="pk_auth_users" schemaName="public" tableName="auth_user" />
+  </changeSet>
+  <changeSet author="ach" id="create-users">
+    <insert schemaName="public" tableName="auth_user">
+      <column name="id" value="3" />
+      <column name="password" value="$2a$12$tNfIfPZzjz2GsorR9dUpo.WBAD8Ch6UgtrUdDrYhqAu0.TejBRew2" />
+      <column name="is_superuser" value="true" />
+      <column name="username" value="root" />
+      <column name="first_name" value="root" />
+      <column name="last_name" value="root" />
+      <column name="email" value="root@root.ru" />
+      <column name="is_staff" value="true" />
+      <column name="is_active" value="true" />
+      <column name="date_joined" value="2021-01-16" />
+    </insert>
+  </changeSet>
+  <changeSet author="ach" id="create-group-table">
+    <createTable tableName="auth_group" schemaName="public">
+      <column name="id" type="int" />
+      <column name="name" type="varchar(150)" />
+    </createTable>
+    <addPrimaryKey columnNames="id" constraintName="pk_auth_group" schemaName="public" tableName="auth_group" />
+  </changeSet>
+  <changeSet author="ach" id="create-user-groups-table">
+    <createTable tableName="auth_user_groups" schemaName="public">
+      <column name="id" type="int" />
+      <column name="user_id" type="int" />
+      <column name="group_id" type="int" />
+    </createTable>
+    <addPrimaryKey columnNames="id" constraintName="pk_auth_user_groups" schemaName="public" tableName="auth_user_groups" />
+    <addForeignKeyConstraint baseTableName="auth_user_groups" baseColumnNames="user_id" constraintName="fk_auth_user_groups_user_id_auth_user_id" referencedTableName="auth_user" referencedColumnNames="id" />
+    <addForeignKeyConstraint baseTableName="auth_user_groups" baseColumnNames="group_id" constraintName="fk_auth_user_groups_group_id_auth_group_id" referencedTableName="auth_group" referencedColumnNames="id" />
+
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ach" id="create-user-permission-table">
+    <createTable tableName="auth_permission" schemaName="public">
+      <column name="id" type="int" />
+      <column name="name" type="varchar(255)" />
+      <column name="content_type_id" type="int" />
+      <column name="codename" type="varchar(100)" />
+    </createTable>
+    <addPrimaryKey columnNames="id" constraintName="pk_auth_permission" schemaName="public" tableName="auth_permission" />
+  </changeSet>
+  <changeSet author="ach" id="create-auth-group-permissions-table">
+    <createTable tableName="auth_group_permissions" schemaName="public">
+      <column name="id" type="int" />
+      <column name="group_id" type="int" />
+      <column name="permission_id" type="int" />
+    </createTable>
+    <addPrimaryKey columnNames="id" constraintName="pk_auth_group_permissions" schemaName="public" tableName="auth_group_permissions" />
+    <addForeignKeyConstraint baseTableName="auth_group_permissions" baseColumnNames="permission_id" constraintName="fk_auth_group_permissions_permission_id_auth_permission_id" referencedTableName="auth_permission" referencedColumnNames="id" />
+    <addForeignKeyConstraint baseTableName="auth_group_permissions" baseColumnNames="group_id" constraintName="fk_auth_group_permissions_group_id_auth_group_id" referencedTableName="auth_group" referencedColumnNames="id" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ACH" id="addNotNullConstraintForTable">
+    <addNotNullConstraint columnName="is_superuser" defaultNullValue="false" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="is_staff" defaultNullValue="false" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="is_active" defaultNullValue="false" schemaName="public" tableName="auth_user" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ACH" id="2021-09-23-setColumnRemarks-">
+    <setColumnRemarks columnName="is_superuser" remarks="Признак суперпользователя" schemaName="public" tableName="auth_user" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ACH" id="2021-09-25 addNotNullConstraintForTable auth_user">
+    <addNotNullConstraint columnName="password" columnDataType="varchar(128)" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="username" columnDataType="varchar(150)" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="first_name" columnDataType="varchar(150)" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="last_name" columnDataType="varchar(150)" schemaName="public" tableName="auth_user" />
+  </changeSet>
+  <changeSet author="ACH" id="2021-09-25 addNotNullConstraintForTable auth_user 2">
+    <modifyDataType columnName="email" newDataType="varchar(100)" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="email" columnDataType="varchar(100)" schemaName="public" tableName="auth_user" />
+    <addNotNullConstraint columnName="date_joined" columnDataType="timestamp" schemaName="public" tableName="auth_user" />
+    <createIndex clustered="true" indexName="auth_user_username_key" schemaName="public" tableName="auth_user" unique="true">
+      <column descending="false" name="username" />
+    </createIndex>
+  </changeSet>
+
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ach" id="2021-09-26 Create notifications table">
+    <createTable schemaName="public" tableName="notifications" remarks="Уведомления">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="user_id" type="int" remarks="ID пользователя, от кого послано уведомение">
+        <constraints nullable="false" />
+      </column>
+      <column name="message" type="text" remarks="Содержимое уведомления">
+        <constraints nullable="false" />
+      </column>
+      <column name="is_viewed" type="boolean" remarks="Уведомление показано на экране" defaultValueBoolean="false">
+        <constraints nullable="false" />
+      </column>
+      <column name="created" type="timestamp" remarks="Дата и время создания уведомления">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <createIndex clustered="true" indexName="idx_iser_id_and_is_viewed" schemaName="public" tableName="notifications">
+      <column descending="false" name="user_id" />
+      <column descending="false" name="is_viewed" />
+    </createIndex>
+    <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notifications" baseTableSchemaName="public" constraintName="fk_notification_user" deferrable="true" initiallyDeferred="true" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="auth_user" referencedTableSchemaName="public" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet author="ach" id="2021-09-26 Create notification type table">
+
+    <createTable schemaName="public" tableName="notification_types" remarks="Типы уведомлений">
+      <column name="id" type="int" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="name" type="varchar(100)" remarks="Название типа уведомления">
+        <constraints nullable="false" />
+      </column>
+
+      <column name="description" type="text" remarks="Описание типа уведомления">
+        <constraints nullable="true" />
+      </column>
+
+    </createTable>
+
+    <addColumn schemaName="public" tableName="notifications">
+      <column afterColumn="id" name="id_notification_type" type="int" remarks="id типа уведомения">
+        <constraints nullable="false" />
+      </column>
+    </addColumn>
+
+    <addForeignKeyConstraint baseColumnNames="id_notification_type" baseTableName="notifications" baseTableSchemaName="public" constraintName="fk_notification_type" deferrable="true" initiallyDeferred="true" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="notification_types" referencedTableSchemaName="public" />
+
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-26 Rename id_notification_type in table notifications" author="ACH">
+    <renameColumn columnDataType="int" newColumnName="notification_type_id" oldColumnName="id_notification_type" schemaName="public" tableName="notifications" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 Add column kind into table notification_types" author="ACH">
+    <addColumn schemaName="public" tableName="notification_types">
+      <column name="kind" type="int" remarks="Вид типа уведомения">
+        <constraints nullable="false" />
+      </column>
+    </addColumn>
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 cnange type for column kind in table notification_types" author="ACH">
+    <modifyDataType schemaName="public" tableName="notification_types" columnName="kind" newDataType="varchar(50)" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 add unique index for column kind in table notification_types" author="ACH">
+    <createIndex clustered="true" indexName="idx_kind" schemaName="public" tableName="notification_types" unique="true">
+      <column descending="false" name="kind" />
+    </createIndex>
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 dropForeignKeyConstraint " author="ACH">
+    <!-- Удалим связь таблиц notifications и notification_types -->
+    <dropForeignKeyConstraint baseTableName="notifications" constraintName="fk_notification_type" />
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 " author="ACH">
+    <!-- Удалим таблицу notification_types - лишняя -->
+    <dropTable tableName="notification_types" schemaName="public" />
+
+  </changeSet>
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 Переделать таблицу notifications в notices" author="ACH">
+    <!-- Добавим колонку kind в  notifications -->
+    <addColumn schemaName="public" tableName="notifications">
+      <column name="kind" type="varchar(50)" remarks="Тип уведомения">
+        <constraints nullable="false" />
+      </column>
+    </addColumn>
+
+    <renameTable schemaName="public" oldTableName="notifications" newTableName="notices" />
+
+  </changeSet>
+
+  <!-- ******************************************************************************** -->
+  <changeSet id="2021-09-27 dropColumn notification_type_id in notices" author="ACH">
+    <!-- Удалим колонку id_notification_type в notices -->
+    <dropColumn tableName="notices" schemaName="public">
+      <column name="notification_type_id"></column>
+    </dropColumn>
+
+  </changeSet>
+</databaseChangeLog>

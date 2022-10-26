@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+    <title>Редактирование связей между источниками данных</title>
+</head>
+
+<body>
+    <section>
+        <link th:href="@{/plugins/jsPlumbToolkit/css/jsplumbtoolkit.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/styles/relations/relations-editor-prefix.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/styles/relations/relations-editor.css}" rel="stylesheet" type="text/css" />
+
+        <script th:src="@{/plugins/jsPlumbToolkit/js/jsplumbtoolkit.js}"></script>
+        <script th:src="@{/js/relations/relations-editor.js}" defer="defer"></script>
+
+        <!-- <div class="page-name" id='relations-page'></div> -->
+
+        <input type="hidden" id="ar_cid" th:value="${id}">
+        <!--    <input type="hidden" id="ar_tables" value="{{str_ar_tables}}">-->
+        <!-- content -->
+        <script type="text/x-jtk-templates" src="/templates/rel/templates.html"></script>
+
+        <div class="jtk-relations-editor-main" id="jtk-demo-dbase">
+            <div class="controls  btn-group">
+                <!-- <i class="fa fa-arrow-left" history_back title="Назад"></i> -->
+                <button type="button" save class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Сохранить">
+                    <i class="fas fa-save fa-lg"></i>
+                    Сохранить
+                </button>
+                <button type="button" history_back class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Назад">
+                    <i class="fas fa-arrow-left fa-lg"></i>
+                    Отмена
+                </button>
+                <button type="button" zoomtofit class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Вписать в экран">
+                    <i class="fas fa-search fa-lg"></i>
+                </button>
+                <button type="button" zoom-in class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Приблизить">
+                    <i class="fas fa-search-plus fa-lg"></i>
+                </button>
+                <button type="button" zoom-out class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Отдалить">
+                    <i class="fas fa-search-minus fa-lg"></i>
+                </button>
+                <button type="button" autosize class="btn btn-outline-primary btn-sm" data-toggle="tooltip"
+                    title="Autosize">
+                    <i class="fas fa-arrows-alt fa-lg"></i>
+                </button>
+                <!-- <i class="fas fa-compress-arrows-alt" zoomtofit title="Вписать в экран"></i>
+                <i class="fas fa-search-minus" zoom-out title="Отдалить"></i>
+                <i class="fas fa-search-plus" zoom-in title="Приблизить"></i> -->
+                <!-- <i class="fas fa-arrows-alt" autosize title="Autosize"></i> -->
+                <!-- <i class="far fa-save" save title="Сохранить"></i> -->
+            </div>
+
+
+            <div class="switch-relations-type">
+                <input type="checkbox" id="edge-fkey" checked="checked" />
+                <label for="edge-fkey">foreign key</label>
+                <br>
+                <input type="checkbox" id="edge-manual" checked="checked" />
+                <label for="edge-manual">ручные связи</label>
+                <br>
+                <input type="checkbox" id="edge-auto" checked="checked" />
+                <label for="edge-auto">авто-связи</label>
+            </div>
+
+            <!-- this is the main drawing area -->
+            <div class="jtk-demo-canvas">
+                <div class="relations-editor-spinner"></div>
+                <!-- miniview -->
+                <div class="miniview"></div>
+            </div>
+
+        </div>
+
+        <!-- /content -->
+
+
+        <!-- The Modal Show Data for Metadata -->
+        <div class="modal" id="modal_RelationMetadataData">
+            <div class="modal-dialog modal-90">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Просмотр содержимого метаданного</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div id="content_RelationMetadataData">Загрузка содержимого метаданного ...</div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="button" class="btn btn-outline-info float-right" data-dismiss="modal">
+                                        Закрыть
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>

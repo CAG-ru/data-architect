@@ -1,0 +1,741 @@
+// В scss файлах лучше вместо require использовать import
+
+@import "bootstrap";
+// @import "https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css";
+
+// local
+@import "common";
+// @import "tooltipapp";
+@import "multi-select";
+@import "jstree.css";
+@import "footable.bootstrap.css";
+@import "../ckeditor/contents.css";
+//@import "fontawesome.scss"
+@import "d3-diagram";
+
+// ===============================================================
+// Переопределенные стили bootstrap
+// .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+//   // background-color: #eeeeee;
+//   // background-color: #F0F0F0;
+//   background-color: #C0C0C0;
+//   opacity: 1;
+// }
+
+// .has-disable {
+//   @include form-control-validation(#B8B8B8, #B8B8B8, #C0C0C0);
+// }
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  background-color: white;
+  border-color: green;
+  color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  box-shadow: 8px 8px 2px 1px rgba(0, 0, 0, 0.37);
+}
+
+
+ul.errorlist {
+  margin-top: 1 rem;
+  margin-bottom: 0;
+}
+
+
+
+#d3_diagram {
+  height: 100%;
+}
+
+.box {
+  height: 100%;
+  // overflow: hidden;
+  margin: 0;
+}
+
+// -------------------------------------------
+.left-col {
+  position: fixed;
+  // top: 0;
+  float: left;
+  height: 75%;
+  width: 20%;
+  // background: lightgrey;
+}
+
+.right-col {
+  position: fixed;
+  // top: 0;
+  left: 22%;
+  height: 70%;
+  width: 77%;
+}
+
+.left-tree {
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  padding-top: 20px;
+}
+
+.wide {
+  overflow-y: scroll;
+  overflow-y: scroll;
+}
+
+// Элемент формы, вывродящий сообщение "Обязательное поле."
+.errorlist {
+  color: red;
+  font-size: small;
+  font-style: italic;
+  list-style-type: none;
+}
+
+$navbar-default-color: #777 !default;
+
+// -----------------------------------------
+html {
+  overflow-y: scroll;
+}
+
+// -----------------------------------------
+body {
+  padding-top: 55px;
+}
+
+// -----------------------------------------
+section {
+  overflow: auto;
+}
+
+// -----------------------------------------
+textarea {
+  resize: vertical;
+}
+
+// -----------------------------------------
+.center {
+  text-align: center;
+}
+
+// -----------------------------------------
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+// -----------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+}
+
+// ***********************************************************************************
+.logo {
+  margin-top: 7px;
+}
+
+// -----------------------------------------
+a.logo {
+  float: left;
+  vertical-align: middle;
+}
+
+// -----------------------------------------
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+// ***********************************************************************************
+nav.navbar.navbar-default {
+  background-color: #efefef;
+  background-image: linear-gradient(180deg, #efefef, #dfe1e2);
+
+  &.navbar-fixed-bottom {
+    min-height: 20px;
+    font-size: 80%;
+  }
+}
+
+.user-info {
+  font-size: 80%;
+
+  &:before {
+    //   @extend .glyphicon;
+    //   @extend .glyphicon-user;
+
+    text-shadow: #efefef 1px 1px 0;
+    margin-right: 2px;
+  }
+}
+
+// ***********************************************************************************
+.copyright {
+  float: left;
+  padding-left: 10px;
+  color: lightgray;
+}
+
+// ***********************************************************************************
+.feedback {
+  &:before {
+    // @extend .glyphicon;
+    // @extend .glyphicon-envelope;
+
+    margin-right: 2px;
+    padding-left: 10px;
+  }
+}
+
+.main_body {
+  // => Эти две строки для того, чтобы не было горизонтального скролла
+  @extend .col-md-12;
+  overflow-x: hidden;
+  // <=
+
+  margin-top: 20px; // Для компенсации заголовка с меню
+  padding-bottom: 5px; // Для компенсации нижнего фиксированного поля
+}
+
+// ***********************************************************************************
+.badge {
+  background-color: #8096a0;
+  padding: 4px;
+}
+
+// ***************** Main menu ***********************
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed");
+
+// $menu_def_color: #feb386 !default;
+$menu_def_color: #ee9600 !default;
+
+.menu-main {
+  list-style: none;
+  margin: 0;
+  // margin: 40px 0 5px;
+  padding: 0;
+  // padding: 25px 0 5px;
+  text-align: center;
+
+  color: $navbar-default-color;
+  background: transparent;
+  // background: $navbar-default-bg;
+  // background: white;
+
+  li {
+    display: inline-block;
+  }
+
+  li:after {
+    content: "|";
+    // color: #606060;
+    color: $navbar-default-color;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  li:last-child:after {
+    content: none;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "Ubuntu Condensed", sans-serif;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 7px;
+    // padding-bottom: 20px;
+    margin: 0 34px 0 30px;
+    font-size: 17px;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: color 0.2s;
+    // text-shadow: #fff 0 1px 0;
+  }
+
+  a,
+  a:visited {
+    color: #9d999d;
+  }
+
+  a.current,
+  a:hover {
+    color: $menu_def_color;
+  }
+
+  a:before,
+  a:after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    top: auto;
+    right: 50%;
+    bottom: 5px;
+    left: 50%;
+    background: $menu_def_color;
+    transition: 0.8s;
+  }
+
+  a:hover:before,
+  .current:before {
+    left: 0;
+  }
+
+  a:hover:after,
+  .current:after {
+    right: 0;
+  }
+
+  .badge-red {
+    @extend .badge;
+
+    min-width: 25px;
+    background: #ff4d4d;
+    font: bold 11px / 16px "OpenSans-Regular", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: yellow;
+    position: relative;
+    left: -10%;
+  }
+}
+
+// Для узкоэкранных устройств
+@media (max-width: 550px) {
+  .menu-main {
+    padding-top: 0;
+  }
+
+  .menu-main li {
+    display: block;
+  }
+
+  .menu-main li:after {
+    content: none;
+  }
+
+  .menu-main a {
+    padding: 25px 0 20px;
+    margin: 0 30px;
+  }
+}
+
+// ***********************************************************************************
+label.required:after {
+  content: " *";
+  color: red;
+}
+
+// ***********************************************************************************
+.ms-container {
+  // background: transparent url('../img/switch.png') no-repeat 50% 50%;
+  width: 100%;
+}
+
+// ***********************************************************************************
+#comment {
+  color: #a94442;
+  font-size: 90%;
+  font-style: italic;
+}
+
+// ***********************************************************************************
+.rails-bootstrap-forms-error-summary {
+  color: #a94442;
+}
+
+// ***********************************************************************************
+//-----------------------
+.login_box {
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  width: 500px;
+  // padding-left: 20px;
+  // padding-right: 20px;
+  // padding-top: 20px;
+  // padding-top: 20px;
+
+  .login_content {
+    padding: 20px;
+  }
+
+  .login_title {
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    background-color: lightblue;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 3px;
+  }
+
+  .login_wrapper {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    // max-width: 450px;
+    height: 90%;
+    width: 90%;
+
+    .login_submit {
+      margin-top: 20px;
+      align-content: center;
+    }
+
+    .title {
+      @extend .h3;
+      color: #668;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      @extend .h4;
+      color: #668;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .comment {
+      font-size: 12;
+      font-style: italic;
+    }
+
+    .error_message {
+      color: red;
+      font-size: 12px;
+
+      h2 {
+        color: #a94442;
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// ***********************************************************************************
+.dropdown-menu {
+  border-radius: 4px;
+}
+
+// ***********************************************************************************
+.list-group-item {
+  .actions {
+    @extend .badge;
+
+    float: right;
+    background-color: transparent;
+  }
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+// ***********************************************************************************
+#report_type_panel {
+  background: #f4f4f4;
+}
+
+#report_type_list-group-item {
+  border: 0.2rem; // solid #E6E6E6;
+  border-color: #e6e6e6 #d4d4d4 #eee;
+  border-radius: 4px;
+  background-color: #fcc;
+  background-image: linear-gradient(180deg, #f2f2f2, #d3d3d3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+  //background-color: #E2E6DB;
+}
+
+/* MESSAGES & ERRORS */
+
+ul.messagelist {
+  padding: 0;
+  margin: 0;
+}
+
+ul.messagelist li {
+  display: block;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px 10px 10px 65px;
+  margin: 0 0 10px 0;
+  background: #dfd url(../img/icon-yes.svg) 40px 12px no-repeat;
+  background-size: 16px auto;
+  color: #333;
+}
+
+ul.messagelist li.warning {
+  background: #ffc url(../img/icon-alert.svg) 40px 14px no-repeat;
+  background-size: 14px auto;
+}
+
+ul.messagelist li.error {
+  background: #ffefef url(../img/icon-no.svg) 40px 12px no-repeat;
+  background-size: 16px auto;
+}
+
+.errornote {
+  font-size: 14px;
+  font-weight: 700;
+  display: block;
+  padding: 10px 12px;
+  margin: 0 0 10px 0;
+  color: #ba2121;
+  border: 1px solid #ba2121;
+  border-radius: 4px;
+  background-color: #fff;
+  background-position: 5px 12px;
+}
+
+ul.errorlist {
+  margin: 0 0 4px;
+  padding: 0;
+  color: #ba2121;
+  background: #fff;
+}
+
+ul.errorlist li {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+ul.errorlist li:first-child {
+  margin-top: 0;
+}
+
+ul.errorlist li a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+td ul.errorlist {
+  margin: 0;
+  padding: 0;
+}
+
+td ul.errorlist li {
+  margin: 0;
+}
+
+.form-row.errors {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid #eee;
+  background: none;
+}
+
+.form-row.errors ul.errorlist li {
+  padding-left: 0;
+}
+
+.errors input,
+.errors select,
+.errors textarea,
+td ul.errorlist+input,
+td ul.errorlist+select,
+td ul.errorlist+textarea {
+  border: 1px solid #ba2121;
+}
+
+.description {
+  font-size: 12px;
+  padding: 5px 0 0 12px;
+}
+
+
+// ***********************************************************************************
+.alert {
+  padding: 3px;
+  margin-bottom: 5px;
+
+  &.alert-success {
+    background-color: #28a745;
+    color: #ebe717;
+  }
+
+  &.alert-error {
+    background-color: #faebd7;
+    color: #ee9600;
+  }
+
+  &.alert-info,
+  &.info {
+    background-color: #d9edf7;
+    color: #1c6f9a;
+  }
+
+  &.alert-danger {
+    // @extend .alert-danger;
+    background-color: #ff4d4d;
+    color: yellow;
+  }
+}
+
+// ***********************************************************************************
+.recaptcha_error {
+  // @extend .alert-danger;
+  background-color: #ff4d4d;
+  color: yellow;
+}
+
+// ***********************************************************************************
+.panel {
+  .panel-default {
+    border-color: transparent;
+    box-shadow: none;
+    padding: 7px 10px;
+  }
+
+  .panel-heading {
+    padding: 5px 10px;
+    background-color: #efefef;
+    background-image: linear-gradient(180deg, #efefef, #dfe1e2);
+  }
+
+  .panel-body {
+    padding: 5px;
+  }
+}
+
+// ***********************************************************************************
+.right_actions {
+  @extend .actions;
+  float: right;
+}
+
+.left_actions {
+  @extend .actions;
+  float: left;
+}
+
+// ***********************************************************************************
+.button-in-header {
+  margin: 3px 5px 0 0;
+}
+
+// ***********************************************************************************
+#custom_page_header {
+  background-color: #efefef;
+  background-image: linear-gradient(180deg, #efefef, #dfe1e2);
+  border-color: #e6e6e6 #d4d4d4 #eee;
+  border-image: none;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.37);
+  box-sizing: border-box;
+  color: #5e6469;
+  display: table;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 18px;
+  margin: 0;
+  padding: 10px 10px;
+  position: relative;
+  text-shadow: 0 1px 0 #fff;
+  text-align: center;
+  width: 100%;
+  z-index: 800;
+}
+
+// ***********************************************************************************
+
+table tr {
+  td {
+    vertical-align: center;
+  }
+}
+
+table.index_table {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  border-spacing: 0;
+
+  th {
+    background-color: #efefef;
+    background-image: linear-gradient(180deg, #efefef, #dfe1e2);
+    text-shadow: #fff 0 1px 0;
+    border: solid 1px #cdcdcd;
+    border-color: #d4d4d4;
+    border-top-color: #e6e6e6;
+    border-right-color: #d4d4d4;
+    border-bottom-color: #cdcdcd;
+    border-left-color: #d4d4d4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 1px #fff inset;
+    // font-size: 1em;
+    font-size: 95%;
+    font-weight: bold;
+    line-height: 18px;
+    margin-bottom: 0.5em;
+    color: #5e6469;
+    padding: 5px 10px 3px 10px;
+    border-right: none;
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    vertical-align: center;
+
+    a,
+    a:link,
+    a:visited {
+      color: #5e6469;
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+    }
+
+    &.sortable a {
+      // background: url(/assets/active_admin/orderable-29374dbb55b0012d78a37c614d573bb3474f0779849b478a147d0f1845ca6617.png) no-repeat 0 4px;
+      background: url(/assets/orderable.png) no-repeat 0 4px;
+      padding-left: 13px;
+    }
+
+    &.sorted-asc,
+    &.sorted-desc {
+      background-color: #e2e2e2;
+      background-image: linear-gradient(180deg, #e2e2e2, #d2d4d6);
+    }
+
+    &.sorted-asc a {
+      background-position: 0 -27px;
+    }
+
+    &.sorted-desc a {
+      background-position: 0 -56px;
+    }
+  }
+
+  th:last-child {
+    border-right: solid 1px #d4d4d4;
+  }
+
+  tr.even td {
+    background: #f4f5f5;
+  }
+
+  tr.selected td {
+    background: #d9e4ec;
+  }
+
+  td {
+    // .td_csm {
+    // }
+
+    font-size: 90%;
+    padding: 10px 12px 8px 12px;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: center;
+  }
+}

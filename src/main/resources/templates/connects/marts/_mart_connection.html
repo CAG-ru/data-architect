@@ -1,0 +1,87 @@
+  <div class='mb_panel with-shadow  white-background' th:fragment="item">
+    <h5>Настройки соединения с базой витрин данных</h5>
+    <a href='edit-mart-connection/' class="btn btn-outline-primary btn-sm" role="button">
+      <i class="fas fa-edit fa-lg"></i>
+      <th:block th:if="${mart_con!=null}">Изменить</th:block>
+      <th:block th:if="${mart_con==null}">Создать</th:block>
+      настройку с базой витрин данных
+    </a>
+    <br>
+    <br>
+    <table class="table table-hover table-sm" th:if="${mart_con != null }">
+      <thead class="thead-dark">
+        <tr>
+          <th class='center'>Характеристика соединения</th>
+          <th class='center'>Значение</th>
+          <th class='center'>Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Название</td>
+          <td th:text="${mart_con.getName()}"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Описание</td>
+          <td th:text="${mart_con.getDescription()}">
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>Тип базы данных</td>
+          <td th:text="${mart_con.getDbapiHuman()}"></td>
+          <td>Тип базы данных для витрин данных всегда Postgre SQL</td>
+        </tr>
+        <tr>
+          <td>Адрес соединения</td>
+          <td th:text="${mart_con.getHost() +':'+ mart_con.getPort()}"></td>
+          <td>Адрес соединения с СУБД</td>
+        </tr>
+        <tr>
+          <td>База данных</td>
+          <td th:text="${mart_con.getDatabase()}"></td>
+          <td>База данных для витрин данных. В этой базе будут храниться витрины данных в специальной схеме в виде
+            таблиц.</td>
+        </tr>
+        <tr>
+          <td>Путь к файлу ssl-сертификата</td>
+          <td th:text="${mart_con.getSslCaCerts()}">{{ mart_con.ssl_ca_certs }}</td>
+          <td>Путь к файлу ssl-сертификата.</td>
+        </tr>
+        <tr>
+          <td>Схема для витрин данных</td>
+          <td th:text="${mart_con.getSchema()}">{{ mart_con.schema }}</td>
+          <td>Схема для витрин данных. Специальная схема для хранения витрин данных.</td>
+        </tr>
+        <tr>
+          <td>Схема данных для временных таблиц</td>
+          <td th:text="${mart_con.getSchemaTmpTables()}">{{ mart_con.schema_tmp_tables }}</td>
+          <td>Схема для временных таблиц. В этой схеме создаются и потом удаляются после завершения операции создания
+            витрины таблицы, являющиеся источников для витрины.</td>
+        </tr>
+        <tr>
+          <td>Создал</td>
+          <td th:text="${mart_con.getCreatedBy()}">
+          <td></td>
+        </tr>
+        <tr>
+          <td>Дата создания</td>
+          <td th:text="${#calendars.format(mart_con.getCreatedAt(),'dd MMMM yyyy')}"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Изменил</td>
+          <td th:text="${mart_con.getUpdatedBy()}">
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Дата изменения</td>
+          <td th:text="${#calendars.format(mart_con.getUpdatedAt(),'dd MMMM yyyy')}"></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

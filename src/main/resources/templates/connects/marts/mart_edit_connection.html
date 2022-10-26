@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+  <title>Настройки соединений</title>
+</head>
+<body>
+<section>
+<div class="page-name" id='connects-page'></div>
+<script th:src="@{/plugins/ckeditor-markdown/ckeditor.js}" type="text/javascript"></script>
+<script th:src="@{/js/connects/mart_edit_connection.js}" defer="defer"></script>
+
+<div>
+  <h4 class='center'>Изменение настроек с базой витрин данных</h4>
+  <form class="was-validated" action="/connects/" id='id_form_mart_connection'>
+    <div class="edit-body">
+      <div class=" mb_panel with-shadow white-background">
+        <div class="form-group">
+          <label for="name">Название соединения</label>
+          <input type="hidden" name="id" id="id"
+                 required>
+          <input type="hidden" name="type_connection" id="id_type_connection"
+                 required value="MARTS">
+          <input type="text" name="name" id="id_name" class="form-control form-control-sm"
+            placeholder="Введите название соединения" required>
+          <div class="invalid-feedback">Введите название соединения</div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Описание соединения</label>
+          <textarea name="description" id="id_description" class="form-control form-control-sm">
+                                </textarea>
+        </div>
+        <div class="form-group">
+          <h5>Тип базы данных: PostgreSQL</h5>
+        </div>
+
+        <div class="form-group">
+          <label for="host">Хост</label>
+          <input type="text" name="host" id="id_host" class="form-control form-control-sm"
+            placeholder="Введите адрес хоста" required value="localhost">
+          <div class="invalid-feedback">
+            Введите адрес хоста
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="port">Порт</label>
+          <input type="text" name="port" id="id_port" class="form-control form-control-sm" placeholder="Введите порт"
+            value="5432"
+            required>
+          <div class="invalid-feedback">
+            Введите порт
+          </div>
+        </div>
+
+        <div class="form-group" aria-describedby="database_help">
+          <label for="database">База данных</label>
+          <input type="text" name="database" id="id_database" class="form-control form-control-sm"
+            placeholder="Введите название базы данных" required>
+          <small id="database_help" class="form-text text-muted">
+            Укажите название базы данных, в которой будут создаваться витрины данных
+          </small>
+          <div class="invalid-feedback">
+            Введите название базы данных
+          </div>
+        </div>
+
+        <div class="form-group" aria-describedby="ssl_ca_certs_help">
+          <label for="ssl_ca_certs">Путь к файлу ssl-сертификата</label>
+          <input type="text" name="ssl_ca_certs" id="id_ssl_ca_certs" class="form-control form-control-sm"
+            placeholder="Введите полный путь к файлу ssl-сертификата">
+          <small id="ssl_ca_certs_help" class="form-text text-muted">
+            При необходимости укажите полный путь к файлу ssl-сертификата
+          </small>
+          <div class="invalid-feedback">
+            Введите полный путь к файлу ssl-сертификата
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Логин</label>
+          <input type="text" name="username" id="id_username" class="form-control form-control-sm"
+            placeholder="Введите логин для подключения" required autocomplete="username">
+          <div class="invalid-feedback">
+            Введите логин для подключения
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input type="password" name="password" id="id_password" class="form-control form-control-sm"
+            placeholder="Введите пароль для подключения" autocomplete="current-password">
+          <div class="invalid-feedback">
+            Введите пароль для подключения
+          </div>
+        </div>
+
+        <div id="id_check_db_text"></div>
+
+        <div class="form-group">
+          <button class="btn btn-outline-success btn-sm" id="id_check_mart_base_connect" type='button'>
+            Проверка соединения
+          </button>
+        </div>
+
+        <div class="form-group" aria-describedby="schema_help">
+          <label for="schema">Схема данных для хранения витрин данных</label>
+          <select name="schema" id="id_schema" data-init-plugin='select2' class="custom-select"
+            placeholder="Выберите схему данных для витрин данных" required>
+          </select>
+          <small id="schema_help" class="form-text text-muted">
+            Выберите необходимую схему данных для витрин данных
+          </small>
+          <div class="invalid-feedback">
+            Выберите схему данных для витрин данных
+          </div>
+        </div>
+
+        <div class="form-group" aria-describedby="schema_tmp_tables_help">
+          <label for="schema_tmp_tables">Схема данных для временных таблиц</label>
+          <select name="schema_tmp_tables" id="id_schema_tmp_tables" data-init-plugin='select2' class="custom-select"
+            placeholder="Выберите схему данных временных таблиц" required>
+          </select>
+          <small id="schema_tmp_tables_help" class="form-text text-muted">
+            Выберите необходимую схему данных временных таблиц
+          </small>
+          <div class="invalid-feedback">
+            Выберите схему данных для временных таблиц
+          </div>
+        </div>
+
+        <div class="form-group" aria-describedby="create_csv_file_help">
+          <div class="custom-control custom-switch">
+            <input type="checkbox" name="create_csv_file" id="id_create_csv_file" class="custom-control-input">
+            <label class="custom-control-label" for="id_create_csv_file">
+              Необходимо создавать копию витрины в csv файле
+            </label>
+          </div>
+          <small id="create_csv_file_help" class="form-text text-muted">
+            Пометьте, если необходимо создавать копию витрины в csv файле
+          </small>
+        </div>
+
+        <div class="form-group" aria-describedby="csv_file_path_help">
+          <label for="csv_file_path">Путь для сохранения csv файла</label>
+          <input type="text" name="csv_file_path" id="id_csv_file_path" class="form-control form-control-sm"
+            placeholder="Введите адрес хоста">
+          <small id="csv_file_path_help" class="form-text text-muted">
+            Укажите путь для сохранения копии витрины в csv файле
+          </small>
+          <div class="invalid-feedback">
+            Укажите путь для сохранения копии витрины в csv файле
+          </div>
+        </div>
+
+      </div>
+      <div class="edit-footer-fixed center">
+        <button class="btn btn-outline-success btn-sm" type="submit" id="id_button_save">
+          <i class="fa fa-save"></i>
+          Сохранить
+        </button>
+
+        <a href='/connects/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+
+      </div>
+    </div>
+  </form>
+
+</div>
+</section>
+</body>
+</html>

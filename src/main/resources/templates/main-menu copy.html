@@ -1,0 +1,197 @@
+<!-- BEGIN SIDEBAR MENU ITEMS-->
+<ul class="menu-items" th:fragment="menu">
+  <li class="m-t-30 ">
+    <a href="/">
+      <span class="title">
+        Главная
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/">
+        <i class="fas fa-home"></i>
+      </a>
+    </span>
+  </li>
+
+  <li>
+    <a href="/marts/">
+      <span class="title">
+        Витрины<br>данных
+      </span>
+      <!-- <span class="arrow"> -->
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/marts/">
+        <i class="fas fa-table"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="/marts/">Мои витрины</a> <span class="icon-thumbnail"><small>В1</small></span> </li>
+      <li class=""> <a href="index.html">Избранное</a> <span class="icon-thumbnail"><small>В2</small></span> </li>
+      <li class=""> <a href="index.html">История</a> <span class="icon-thumbnail"><small>В3</small></span> </li>
+    </ul>-->
+  </li>
+
+  <li>
+    <a href="/entities/">
+      <span class="title">
+        Сущности
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/entities/">
+        <i class="fas fa-lightbulb"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="index.html">Ссылка 1</a> <span class="icon-thumbnail"><small>И1</small></span> </li>
+      <li class=""> <a href="index.html">Ссылка 2</a> <span class="icon-thumbnail"><small>И2</small></span> </li>
+    </ul>-->
+  </li>
+
+  <li>
+    <a href="/relations/">
+      <span class="title">
+        Связи между<br>источниками
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/relations/">
+        <i class="fas fa-link"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="index.html">Ссылка 1</a> <span class="icon-thumbnail"><small>И1</small></span> </li>
+      <li class=""> <a href="index.html">Ссылка 2</a> <span class="icon-thumbnail"><small>И2</small></span> </li>
+    </ul>-->
+  </li>
+
+  <li>
+    <a href="/connects/sources/">
+      <span class="title">
+        Соединения с<br>источниками
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/connects/sources/">
+        <i class="fas fa-database"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="index.html">Ссылка 1</a> <span class="icon-thumbnail"><small>И1</small></span> </li>
+      <li class=""> <a href="index.html">Ссылка 2</a> <span class="icon-thumbnail"><small>И2</small></span> </li>
+    </ul>-->
+  </li>
+
+  <!-- <li>
+    <a href="/wiki/">
+      <span class="title">
+        Wiki-описание
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/wiki/">
+        <i class="fab fa-wikipedia-w"></i>
+      </a>
+    </span>
+  </li> -->
+
+  <li>
+    <a href="/connects/">
+      <span class="title">
+        Настройки<br>соединений
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/connects/">
+        <i class="fas fa-network-wired"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="index.html">Ссылка 1</a> <span class="icon-thumbnail"><small>И1</small></span> </li>
+      <li class=""> <a href="index.html">Ссылка 2</a> <span class="icon-thumbnail"><small>И2</small></span> </li>
+    </ul>-->
+  </li>
+  <li>
+    <a href="/handbooks/">
+      <span class="title">
+        Справочники
+      </span>
+      <!-- <span class=" arrow"></span> -->
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/handbooks/">
+        <i class="fas fa-list-ul"></i>
+      </a>
+    </span>
+    <!--<ul class="sub-menu">
+      <li class=""> <a href="index.html">Ссылка 1</a> <span class="icon-thumbnail"><small>И1</small></span> </li>
+      <li class=""> <a href="index.html">Ссылка 2</a> <span class="icon-thumbnail"><small>И2</small></span> </li>
+    </ul>-->
+  </li>
+
+  <li>
+    <!-- <a href="/user_profile/update/{{user.id}}/">
+      <span class="title">
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/user_profile/update/{{user.id}}/">
+        <i class="fas fa-user"></i>
+      </a>
+    </span> -->
+
+    <ul class="sub-menu">
+      <li>
+        <a href="/notifications/list/">
+          <span class="title">
+            Уведомления
+          </span>
+          <span class="notification-cnt"></span>
+          </span>
+        </a>
+        <span class="icon-thumbnail">
+          <a href="/notifications/list/"><i class="far fa-comment-dots"></i>
+          </a>
+        </span>
+      </li>
+      <li>
+        <a href="/logout">
+          <span class="title">
+            Выйти
+          </span>
+        </a>
+        <span class="icon-thumbnail">
+          <a href="/logout"><i class="fas fa-sign-out-alt"></i>
+          </a>
+        </span>
+      </li>
+    </ul>
+
+  </li>
+
+  <!-- <li> <a href="/admin/"><span class="title">Администрирование</span></a><span class="icon-thumbnail"><a
+        href="/admin/"><i class="icon-cog"></i></a></span></li>
+
+  </li> -->
+
+  <li>
+    <a href="/admin/">
+      <span class="title">
+        Администрирование
+      </span>
+    </a>
+    <span class="icon-thumbnail">
+      <a href="/admin/">
+        <i class="fas fa-tools"></i>
+      </a>
+    </span>
+  </li>
+</ul>
+
+<div class="clearfix"></div>

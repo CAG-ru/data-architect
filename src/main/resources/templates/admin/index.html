@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Административный раздел</title>
+</head>
+
+<body>
+  <section>
+    <div class="page-name" id='admin-page'></div>
+
+    <!-- <link th:href="@{/styles/connects/connects.css}" rel="stylesheet" type="text/css" /> -->
+    <script th:src="@{/js/admin/admin-page.js}" defer="defer"></script>
+    <div class="container-fluid">
+      <!-- START BREADCRUMB -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+        <li class="breadcrumb-item active">Административный раздел</li>
+      </ol>
+      <!-- END BREADCRUMB -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#users">
+            Пользователи
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div id="users" class="tab-pane container active">
+          <div th:insert="~{admin/_users_list :: item}"></div>
+        </div>
+      </div>
+
+  </section>
+</body>
+
+</html>

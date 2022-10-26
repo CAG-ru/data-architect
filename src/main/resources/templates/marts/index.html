@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Витрины данных</title>
+</head>
+<body>
+<section>
+    <div class="page-name" id='marts-page'></div>
+    <link th:href="@{/styles/mart/marts.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/marts/marts-page.js}" defer="defer"></script>
+
+    <div class="container-fluid">
+        <!-- START BREADCRUMB -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Главная</a></li>
+            <li class="breadcrumb-item active">Витрины данных</li>
+        </ol>
+        <!-- END BREADCRUMB -->
+        <h4>Витрины данных</h4>
+        <!-- <a href='manage-mart/?action=new' class="btn btn-outline-primary btn-sm role="button"><i class="fa fa-plus"></i> Создать витрину данных</a> -->
+        <br>
+
+        <div
+                th:if="${mart_con==null}"
+                class="alert alert-danger bordered">
+            <i class=" fas fa-exclamation-triangle"></i>
+            <strong>
+                Не настроено соединение с базой витрин данных!
+            </strong>
+            <a href='edit-mart-connection/'>
+                Создать настройку с базой витрин данных
+            </a>
+        </div>
+
+        <div class="btn-group-sm">
+            <a href='/marts/manage-mart'
+               class="btn btn-outline-primary btn-sm"
+               th:disabled="${false}" role="button"
+               title="{% if not entityes_present %}Не создано ни одной сущности. Создайте сущность перед созданием витрины.{% endif %}">
+                <i class="fa fa-plus"></i>
+                Создать витрину данных
+            </a>
+            <a href='/marts/delete-old-marts' class="btn btn-outline-danger btn-sm" role="button"
+               onclick="return confirm('Вы уверены, что хотите удалить устаревшие витрины?')">
+                <i class="fas fa-trash-alt text-danger"></i>
+                Удалить устаревшие витрины
+            </a>
+        </div>
+
+        <div
+        th:replace="~{marts/_filters :: item}"
+        ></div>
+        <br>
+        <br>
+
+        <ul id="tab_marts" class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" data-val="all_marts_tab" href="">Все витрины</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-val="user_marts_tab" href="">Мои витрины</a>
+            </li>
+        </ul>
+
+        <div id="tab-content" class="tab-content">
+            <div class='mb_panel with-shadow  white-background'>
+                <div
+                        th:replace="~{marts/_table :: item}"
+                ></div>
+            </div>
+        </div>
+
+        <br>
+    </div>
+</section>
+</body>

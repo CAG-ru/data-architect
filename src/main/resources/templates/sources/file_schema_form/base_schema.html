@@ -1,0 +1,52 @@
+{% load static %}
+<script src="{% static 'js/sources/file-schema-form.js' %}" defer="defer"></script>
+
+<!-- Modal Edit file schema -->
+<div class="modal fade" id="modal_add_file_schema" role="dialog">
+    <div class="modal-dialog modal-xl">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Параметры схемы {% block file-type %}{% endblock %}:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    {% block common %}
+                    <div class="form-group" id="common">
+                        <div class="form-row first_row">
+                            <div class="col-md-12 mb-3">
+                                <input type="text" class="form-control form-control-sm" placeholder="Название" id="name">
+                            </div>
+                        </div>
+
+                        <div class="form-row first_row">
+                            <div class="col-md-12 mb-3">
+                                <input type="text" class="form-control form-control-sm" placeholder="Описание" id="description">
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+
+                    {% block form-groups %}
+                    {% endblock %}
+
+                    <button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal"
+                        id="modal_file_schema_save">Сохранить
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal"
+                        id="modal_file_schema_close">
+                        Закрыть
+                    </button>
+                    {% block delete-button %}
+                    {% endblock %}
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+{% load static %}
+
+<ul class="menu-main nav navbar-nav ml-auto">
+  <li class="nav-item dropdown" id="user-menuitem">
+
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ user.username }} (<span class="notification-cnt">0</span>)</a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <a href="{% url 'notifications_list' %}">Уведомления <span class="notification-cnt"></span></a>
+      <a href="{% url 'profile_update' pk=request.user.pk %}">Настройки</a>
+      <div class="dropdown-divider"></div>
+      <a href="/logout">Выход</a>
+    </div>
+
+  </li>
+</ul>
+
+
+<script type="text/javascript">
+  URL_NYT_GET_NEW = "{% url "notifications_count" %}";
+</script>
+
+<script type="text/javascript" th:src="@{js/notifications/count.js}"></script>

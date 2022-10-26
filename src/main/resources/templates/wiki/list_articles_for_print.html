@@ -1,0 +1,64 @@
+{% extends "wiki/base.html" %}
+{% load mptt_tags %}
+{% load static %}
+
+{% block title %}Статьи для печати{% endblock %}
+
+{% block wiki_breadcrumbs %}
+{% include "wiki/includes/breadcrumbs.html" %}
+{% endblock %}
+
+
+
+{% block wiki_contents %}
+    <form action="/wiki_generator/list_articles_for_print" method="post">
+    {% csrf_token %}
+    <div id="article-container">
+        <h1>Статьи для печати</h1>
+
+        <div id="accordion">
+        {% for node, structure in nodes|tree_info:"ancestors" %}
+
+        {% if node.is_child_node %}
+            {% if structure.new_level %}
+                <ul id="{{ node.get_ancestors.last.slug }}" class="list-group list-group-flush collapse show">
+                    <li class="list-group-item">
+            {% else %}
+                </li>
+                <li class="list-group-item">
+            {% endif %}
+                {% if node.is_leaf_node and structure.new_level and node.get_ancestors.last.get_children.count > 10 %}
+                    <select name="nodes" multiple class="form-control" size="10">
+                        <option value="{{ node.pk }}">
+                            {{ node.article.current_revision.title }}
+                        </option>
+                {% elif node.is_leaf_node and node.get_ancestors.last.get_children.count > 10 %}
+                        <option value="{{ node.pk }}">
+                            {{ node.article.current_revision.title }}
+                        </option>
+                {% else %}
+                        <input name="nodes" class="form-check-input" type="checkbox" value="{{ node.pk }}">
+                        <a href="/wiki/{{ node.path }}">{{ node.article.current_revision.title }}</a>
+                    {% if not node.is_leaf_node %}
+                        <span class="badge badge-primary badge-pill">{{ node.get_children.count }}</span>
+                        <i class="fa fa-caret-down" aria-hidden="true" data-toggle="collapse" data-target="#{{ node.slug }}" aria-expanded="true" aria-controls="{{ node.slug }}"></i>
+                    {% endif %}
+
+                {% endif %}
+
+            {% for level in structure.closed_levels %}
+                    </select>
+                </li>
+            </ul>
+
+            {% endfor %}
+
+        {% endif %}
+        {% endfor %}
+        </div>
+
+        <button id="create-files" type="submit" class="btn btn-outline-success">Создать файл</button>
+    </div>
+    </form>
+
+{% endblock %}

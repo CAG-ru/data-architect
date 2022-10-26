@@ -1,0 +1,129 @@
+{% extends "sources/file_schema_form/base_schema.html" %}
+
+{% block file-type %} excel {% endblock %}
+
+{% block form-groups %}
+<div class="form-group" id="attr_list">
+    <label>
+        <button type="button" class="btn btn-sm btn-outline-success add">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </button>
+        Список атрибутов:
+    </label>
+    <div class="form-row first_row">
+
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="attr_name">
+        </div>
+        <div class="col-md-7 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="pattern">
+        </div>
+        <div class="col-md-1 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="offset">
+        </div>
+        <div class="col-md-1 mb-3">
+            <button type="button" class="btn btn-outline-danger btn-sm mb-2 remove" disabled>
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-group" id="columns">
+    <label>
+        <button type="button" class="btn btn-sm btn-outline-success add">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </button>
+        Описание колонок:
+    </label>
+    <div class="form-row first_row">
+
+        <div class="col-md-3 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="attr_name">
+        </div>
+        <div class="col-md-4 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="pattern">
+        </div>
+        <div class="col-md-1 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="offset">
+        </div>
+        <div class="col-md-2 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="parent">
+        </div>
+        <div class="col-md-1 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="order">
+        </div>
+        <div class="col-md-1 mb-3">
+            <button type="button" class="btn btn-outline-danger btn-sm mb-2 remove" disabled>
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" id="start_string_pattern">
+    <label>
+        <button type="button" class="btn btn-sm btn-outline-success add">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </button>
+        Шаблоны первой строки:
+    </label>
+    <div class="form-row first_row">
+
+        <div class="col-md-11 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="pattern">
+        </div>
+        <div class="col-md-1 mb-3">
+            <button type="button" class="btn btn-outline-danger btn-sm mb-2 remove" disabled>
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+        </button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" id="types">
+    <label>
+        <button type="button" class="btn btn-sm btn-outline-success add">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </button>
+        Типы данных:
+    </label>
+    <div class="form-row first_row">
+
+        <div class="col-md-7 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="attr_name">
+        </div>
+        <div class="col-md-2 mb-3">
+            <select class="form-control form-control-sm type" id="type">
+                <option selected>type</option>
+                <option value="str">str</option>
+                <option value="int">int</option>
+            </select>
+        </div>
+        <div class="col-md-2 mb-3 not_null">
+            <select class="form-control form-control-sm not_null" id="not_null">
+                <option selected>not_null</option>
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
+        </div>
+        <div class="col-md-1 mb-3">
+            <button type="button" class="btn btn-outline-danger btn-sm mb-2 remove" disabled>
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" id="count_columns_AB">
+    <div class="form-row first_row">
+
+        <div class="col-md-2 mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="Count_columns_AB">
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

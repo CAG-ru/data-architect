@@ -1,0 +1,83 @@
+{% load static %}
+{% load kafka_security %}
+{% load sass_tags %}
+
+<link href="{% sass_src 'css/kafka/kafka.scss' %}" rel="stylesheet" type="text/css" />
+<div class='mb_panel with-shadow white-background'>
+  <h5>Настройки соединения с Kafka</h5>
+  <a href='edit-kafka-connection/?action=new' class="btn btn-outline-primary btn-sm" role="button">
+    <i class="fa fa-plus"></i>
+    Добавить настройку соединение с Kafka
+  </a>
+  <br>
+  <br>
+  <table class="table table-hover table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th class='left'>№</th>
+        <th class='left'>Название</th>
+        <th class='left'>Тип соединения</th>
+        <th class='left'>Хост:Порт</th>
+        <th class='left'>Входящий топик</th>
+        <th class='left'>Исходящий топик</th>
+        <th class='left'></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if kafka_connections %}
+      {% for one_conn in kafka_connections %}
+
+      <tr>
+        <td class='left'>{{ forloop.counter }}.</td>
+        <td>
+          {{ one_conn.name }}
+          <span>
+            <i class='fas fa-info-circle icon green' data-toggle="tooltip"
+              title="{{ one_conn.description|safe|escape }}"></i>
+          </span>
+        </td>
+        <td class='left'>{{one_conn.type_kafka_connection_human}}</td>
+        <td class='left'>{{ one_conn.host }}:{{ one_conn.port }}</td>
+        <td class='left'>{{one_conn.topic_from}}</td>
+        <td class='left'>{{one_conn.topic_to}}</td>
+        <td class='center'>
+          <div class="btn-group">
+            <a class="btn btn-outline-primary btn-sm" role='button'
+              href='edit-kafka-connection/?action=edit&cid={{ one_conn.id }}' data-toggle="tooltip"
+              title="Изменить настройку соединения">
+              <i class='far fa-edit'></i>
+            </a>
+            <a class="btn btn-outline-danger btn-sm " role='button'
+              href='edit-kafka-connection/?action=delete&cid={{ one_conn.id }}' data-toggle="tooltip"
+              title="Удалить настройку соединения"
+              onclick="return confirm('Вы уверены, что хотите удалить настройку соединения?')">
+              <i class='fas fa-trash-alt'></i>
+            </a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    {% if kafka_connections.paginator.num_pages > 1 %}
+    <span class="step-links">
+      <span class="current">
+        Страница {{ kafka_connections.number }} из {{ kafka_connections.paginator.num_pages }}.
+      </span>
+
+      {% if kafka_connections.has_previous %}
+      <a href="?page=1">&laquo; первая</a>
+      <a href="?page={{ kafka_connections.previous_page_number }}">предыдущая</a>
+      {% endif %}
+
+      {% if kafka_connections.has_next %}
+      <a href="?page={{ kafka_connections.next_page_number }}">следующая</a>
+      <a href="?page={{ kafka_connections.paginator.num_pages }}">последняя &raquo;</a>
+      {% endif %}
+    </span>
+    {% endif %}
+  </div>
+</div>

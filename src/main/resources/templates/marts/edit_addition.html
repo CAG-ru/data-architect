@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html th:replace="~{base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>
+        Дополнительная информация о витрине данных
+        <th:block></th:block>
+    </title>
+</head>
+<body>
+<section>
+    <div class="page-name" id='marts-page'></div>
+    <link th:href="@{/styles/mart/marts.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/marts/edit_addition.js}" defer="defer"></script>
+
+    <!-- Здесь передается id витрины, если она подается на редактирование -->
+    <div
+            th:if="${mart.id!=null}"
+            id="mart_id" th:data-mart_id="${mart.id}"></div>
+
+
+    <div>
+        <h4 class='center'>Дополнительная информация о витрине данных '{{ mart_name }}'</h4>
+        <form class="was-validated" action="/marts/" id='id_form_edit_addition'>
+            <div class="edit-body">
+                <div class=" mb_panel with-shadow white-background">
+                    <div class="form-group" aria-describedby="published_help">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="id_published" name="published">
+                            <label class="custom-control-label" for="id_published">
+                                Признак публикации
+                            </label>
+                        </div>
+                        <small id="published_help" class="form-text text-muted">
+                            Указывает опубликована или нет данная витрина
+                        </small>
+                    </div>
+
+                    <div class="form-group" aria-describedby="publication_date_help">
+                        <label for="publication_date">Дата публикации данных</label>
+                        <input type="date" name="publication_date" id="id_publication_date"
+                               class="form-control form-control-sm"
+                               readonly>
+                        <small id="publication_date_help" class="form-text text-muted">
+                            Поле заполняется автоматически при публикации витрины данных
+                        </small>
+                    </div>
+
+                    <div class="form-group" aria-describedby="for_citations_help">
+                        <label for="for_citations">Для цитирования</label>
+                        <input type="text" name="for_citations" id="id_for_citations"
+                               class="form-control form-control-sm" required>
+                        <small id="for_citations_help" class="form-text text-muted">
+                            Укажите строку для цитирования
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите строку для цитирования
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="internal_data_set_identifier_help">
+                        <label for="internal_data_set_identifier">Внутренний идентификатор набора данных</label>
+                        <input type="text" name="internal_data_set_identifier" id="id_internal_data_set_identifier"
+                               class="form-control form-control-sm" required>
+                        <small id="internal_data_set_identifier_help" class="form-text text-muted">
+                            Укажите внутренний идентификатор набора данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите внутренний идентификатор набора данных
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="doi_tag_help">
+                        <label for="doi_tag">DOI-метка набора данных</label>
+                        <input type="text" name="doi_tag" id="id_doi_tag" class="form-control form-control-sm" required>
+                        <small id="doi_tag_help" class="form-text text-muted">
+                            Укажите DOI-метку набора данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите DOI-метку набора данных
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="link_to_dataset_description_help">
+                        <label for="link_to_dataset_description">Ссылка на описание набора данных</label>
+                        <input type="url" name="link_to_dataset_description" id="id_link_to_dataset_description"
+                               class="form-control form-control-sm" required>
+                        <small id="link_to_dataset_description_help" class="form-text text-muted">
+                            Укажите ссылку на описание набора данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите ссылку на описание набора данных
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="short_description_help">
+                        <label for="short_description">Краткое наименование набора данных</label>
+                        <input type="text" name="short_description" id="id_short_description"
+                               class="form-control form-control-sm"
+                               required>
+                        <small id="short_description_help" class="form-text text-muted">
+                            Укажите краткое наименование набора данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите краткое наименование набора данных
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="full_description">Полное наименование набора данных</label>
+                        <textarea name="full_description" id="id_full_description" class="form-control form-control-sm">
+          </textarea>
+                    </div>
+
+                    <div class="form-group" aria-describedby="regularity_of_data_set_update_help">
+                        <label for="regularity_of_data_set_update">Регулярность обновления набора данных</label>
+                        <select name="regularity_of_data_set_update" id="id_regularity_of_data_set_update"
+                                data-init-plugin='select2'
+                                class="custom-select" placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="regularity_of_data_set_update_help" class="form-text text-muted">
+                            Выберите необходимую регулярность обновления набора данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите регулярность обновления набора данных
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="licence_help">
+                        <label for="licence">Лицензия/условия использования</label>
+                        <select name="licence" id="id_licence" data-init-plugin='select2'
+                                class="custom-select" placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="licence_help" class="form-text text-muted">
+                            Выберите необходимую лицензия/условия использования
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите лицензия/условия использования
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="access_mode_help">
+                        <label for="access_mode">Режим доступа</label>
+                        <select name="access_mode" id="id_access_mode" data-init-plugin='select2' class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="access_mode_help" class="form-text text-muted">
+                            Выберите необходимый режим доступа
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите режим доступа
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="api_url_help">
+                        <label for="api_url">API-url</label>
+                        <input type="url" name="api_url" id="id_api_url" class="form-control form-control-sm" required>
+                        <small id="api_url_help" class="form-text text-muted">
+                            Укажите API-url
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите API-url
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="priority_help">
+                        <label for="priority">Приоритет</label>
+                        <input type="number" name="priority" id="id_priority" class="form-control form-control-sm"
+                               required min="0"
+                               max="100">
+                        <small id="priority_help" class="form-text text-muted">
+                            Укажите приоритет от 0 до 100
+                        </small>
+                        <div class="invalid-feedback">
+                            Укажите приоритет от 0 до 100
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="set_categories_help">
+                        <label for="set_categories">Категории набора</label>
+                        <select name="set_categories" id="id_set_categories" data-init-plugin='select2'
+                                class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="set_categories_help" class="form-text text-muted">
+                            Выберите необходимую категорию набора
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите категорию набора
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="aggregation_level_help">
+                        <label for="aggregation_level">Уровень агрегации</label>
+                        <select name="aggregation_level" id="id_aggregation_level" data-init-plugin='select2'
+                                class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="aggregation_level_help" class="form-text text-muted">
+                            Выберите необходимый уровень агрегации
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите уровень агрегации
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="handbooks_and_classifiers_help">
+                        <label for="handbooks_and_classifiers">Справочники и классификаторы</label>
+                        <select name="handbooks_and_classifiers" id="id_handbooks_and_classifiers"
+                                data-init-plugin='select2' class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="handbooks_and_classifiers_help" class="form-text text-muted">
+                            Выберите необходимый справочник или классификатор
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите справочник или классификатор
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="the_essence_of_data_emergence_help">
+                        <label for="the_essence_of_data_emergence">Сущность возникновения данных</label>
+                        <select name="the_essence_of_data_emergence" id="id_the_essence_of_data_emergence"
+                                data-init-plugin='select2' class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required>
+                        </select>
+                        <small id="the_essence_of_data_emergence_help" class="form-text text-muted">
+                            Выберите необходимую сущность возникновения данных
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите сущность возникновения данных
+                        </div>
+                    </div>
+
+                    <div class="form-group" aria-describedby="tags_help">
+                        <label for="tags">Тэги</label>
+                        <select name="tags" id="id_tags" data-init-plugin='select2' class="custom-select"
+                                placeholder="Выберите схему данных для витрин данных" required multiple>
+                        </select>
+                        <small id="tags_help" class="form-text text-muted">
+                            Выберите необходимые тэги
+                        </small>
+                        <div class="invalid-feedback">
+                            Выберите тэги
+                        </div>
+                    </div>
+
+                    <!-- ----- -->
+                </div>
+                <div class="edit-footer-fixed center">
+                    <button class="btn btn-outline-success btn-sm" type="button" id="id_button_save">
+                        <i class="fa fa-save"></i>
+                        Сохранить
+                    </button>
+
+                    <a href='/marts/' class="btn btn-outline-danger btn-sm" role="button" id="button_cancel">Отмена</a>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+</body>
+</html>
